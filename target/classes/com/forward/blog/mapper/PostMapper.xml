@@ -53,7 +53,7 @@
 		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
 		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
 		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
-		WHERE t_post.pid = #{pid} AND drafts = 0
+		WHERE t_post.pid = #{pid} AND drafts = #{drafts}
 	</select>
 	
 	<select id="updatePostById" parameterType="Post">

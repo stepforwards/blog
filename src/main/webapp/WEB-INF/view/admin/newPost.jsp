@@ -87,7 +87,7 @@ jQuery(document).ready(function($){
           
           <div class="post-text" style="margin: 0 auto;"> <!-- <img style="margin: 0 auto;" src="style/images/art/post1.jpg" alt="" /> --> <br />
           	<textarea id="editor_id1" name="pcontent"></textarea>
-	        <input type="submit" class="btn btn-success" name="drafts" onclick="sendPost(this)" style="margin-left: 40%;margin-top: 10px;" value="保存"/>
+	        <input type="submit" class="btn btn-success" name="drafts" onclick="sendPost(this)" style="margin-left: 40%;margin-top: 10px;" value="发布"/>
 	        <input type="submit" class="btn btn-default" name="drafts" onclick="saveDrafts(this)" style="margin-top: 10px;" value="保存到草稿"/>
           </div>
           <!-- End Text --> 

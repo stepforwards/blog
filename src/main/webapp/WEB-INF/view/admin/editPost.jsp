@@ -95,7 +95,8 @@ jQuery(document).ready(function($){
           		<textarea id="editor_id1" name="pcontent" >
    					${post.pcontent }       		
           		</textarea>
-	        <input type="submit" class="btn btn-primary" style="margin-left: 45%;margin-top: 10px;" value="保存"/>
+	        <input type="submit" class="btn btn-success" name="drafts" onclick="sendPost(this)" style="margin-left: 40%;margin-top: 10px;" value="发布"/>
+	        <input type="submit" class="btn btn-default" name="drafts" onclick="saveDrafts(this)" style="margin-top: 10px;" value="保存到草稿"/>
           </div>
           <!-- End Text --> 
           </div>
@@ -121,6 +122,14 @@ $(function(){
 		$("#"+$(".tagids")[i].value)[0].checked = true;
 	}
 });
+</script>
+<script type="text/javascript">
+	function sendPost(drafts) {
+		drafts.value = 0;
+	}
+	function saveDrafts(drafts) {
+		drafts.value = 1;
+	}
 </script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/edtior/kindeditor-all-min.js"/>"></script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/edtior/lang/zh-CN.js"/>"></script>

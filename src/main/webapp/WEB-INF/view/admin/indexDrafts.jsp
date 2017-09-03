@@ -129,7 +129,7 @@ $(document).ready(function()
 	          <td>${post.pinserttime }</td>
 	          <td>${post.pupdatatime }</td>
 	          <td><input type="checkbox" onclick="setFinePost(this.value,this.checked)" ${post.pfine } value="${post.pid }"></td>
-	          <td><a href="<c:url value="/admin/post/editPostById.action"/>?pid=${post.pid }">#</a></td>
+	          <td><a href="<c:url value="/admin/post/editPostById.action"/>?pid=${post.pid }&drafts=1">#</a></td>
 	          <td><a href="<c:url value="/admin/post/deleteDraftsPostById.action"/>?pid=${post.pid }">X</a></td>
 	        </tr>
         </c:forEach>
