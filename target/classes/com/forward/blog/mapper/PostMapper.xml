@@ -25,7 +25,7 @@
 		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
 		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
 		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
-		WHERE ptitle LIKE '%' #{ptitle} '%'
+		WHERE ptitle LIKE '%' #{ptitle} '%' AND drafts = #{drafts}
 		<if test="pcategoriesid != null and pcategoriesid != '' ">
 		 	AND pcategoriesid = #{pcategoriesid}
 		</if>
@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="insertPost" parameterType="Post">
-		insert into t_post(ptitle,pcontent,pcategoriesid,pinserttime) values(#{ptitle},#{pcontent},#{pcategoriesid},#{pinserttime})
+		insert into t_post(ptitle,pcontent,pcategoriesid,drafts,pinserttime) values(#{ptitle},#{pcontent},#{pcategoriesid},#{drafts},#{pinserttime})
 	</select>
 	
 	<select id="selectNewPostId" resultType="Integer">
@@ -53,16 +53,24 @@
 		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
 		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
 		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
-		WHERE t_post.pid = #{pid}
+		WHERE t_post.pid = #{pid} AND drafts = 0
 	</select>
 	
 	<select id="updatePostById" parameterType="Post">
 		update t_post set ptitle = #{ptitle},pcontent = #{pcontent},pcategoriesid = #{pcategoriesid},
-		pupdatatime = #{pupdatatime} where pid = #{pid}
+		pupdatatime = #{pupdatatime},drafts = #{drafts} where pid = #{pid}
 	</select>
 	
 	<select id="selectlatestPost" resultType="Post">
-		select * from t_post ORDER BY pid DESC LIMIT 0,5
+		select * from t_post where drafts = 0 ORDER BY pid DESC LIMIT 0,5 
+	</select>
+	
+	<select id="setFinePostById" parameterType="Post" >
+		update t_post set pfine = #{pfine} where pid = #{pid} 
+	</select>
+	
+	<select id="selectFinePostList" resultType="Post">
+		select * from t_post where pfine = 'checked' and drafts = 0
 	</select>
 	
 </mapper>

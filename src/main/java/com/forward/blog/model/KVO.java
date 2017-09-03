@@ -5,6 +5,14 @@ public class KVO {
 	private String ptitle = "";
 	private int pcategoriesid;
 	private int tid;
+	private int drafts = 0;
+	
+	public int getDrafts() {
+		return drafts;
+	}
+	public void setDrafts(int drafts) {
+		this.drafts = drafts;
+	}
 	public String getPtitle() {
 		return ptitle;
 	}
@@ -25,7 +33,8 @@ public class KVO {
 	}
 	@Override
 	public String toString() {
-		return "KVO [ptitle=" + ptitle + ", pcategoriesid=" + pcategoriesid + ", tid=" + tid + "]";
+		return "KVO [ptitle=" + ptitle + ", pcategoriesid=" + pcategoriesid + ", tid=" + tid + ", drafts=" + drafts
+				+ "]";
 	}
 	
 	

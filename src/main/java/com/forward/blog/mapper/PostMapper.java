@@ -21,4 +21,9 @@ public interface PostMapper {
 
 	List<Post> selectlatestPost();
 
+	void setFinePostById(Post post);
+
+	List<Post> selectFinePostList();
+
+
 }

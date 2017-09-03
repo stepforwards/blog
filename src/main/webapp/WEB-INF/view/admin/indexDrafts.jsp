@@ -76,7 +76,7 @@ $(document).ready(function()
       <div class="footer-top"></div>
     </div>
     <!-- Begin Latest Works -->
-    <h2>文章列表</h2>
+    <h2>草稿列表</h2>
       <form class="search" action="<c:url value="/admin/post/postList.action"/>" method="post">
       	<div class="searchform" style="width: 300px;display: inline-block;">
 	      	 <input  type="text" id="s" name="ptitle" value="${kvo.ptitle }" placeholder="请输入文章标题" onblur="searchform()"/>
@@ -130,7 +130,7 @@ $(document).ready(function()
 	          <td>${post.pupdatatime }</td>
 	          <td><input type="checkbox" onclick="setFinePost(this.value,this.checked)" ${post.pfine } value="${post.pid }"></td>
 	          <td><a href="<c:url value="/admin/post/editPostById.action"/>?pid=${post.pid }">#</a></td>
-	          <td><a href="<c:url value="/admin/post/deletePostById.action"/>?pid=${post.pid }">X</a></td>
+	          <td><a href="<c:url value="/admin/post/deleteDraftsPostById.action"/>?pid=${post.pid }">X</a></td>
 	        </tr>
         </c:forEach>
         

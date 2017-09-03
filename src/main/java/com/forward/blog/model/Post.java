@@ -11,6 +11,7 @@ public class Post {
 	private String pcontent;
 	private int pcategoriesid;
 	private String pfine;
+	private int drafts = 0;
 	private Date pinserttime;
 	private Date pupdatatime;
 	private String categoriesname;
@@ -20,6 +21,12 @@ public class Post {
 	private String[] oldtagids;
 	
 	
+	public int getDrafts() {
+		return drafts;
+	}
+	public void setDrafts(int drafts) {
+		this.drafts = drafts;
+	}
 	public String[] getOldtagids() {
 		return oldtagids;
 	}
@@ -102,9 +109,10 @@ public class Post {
 	@Override
 	public String toString() {
 		return "Post [pid=" + pid + ", ptitle=" + ptitle + ", pcontent=" + pcontent + ", pcategoriesid=" + pcategoriesid
-				+ ", pfine=" + pfine + ", pinserttime=" + pinserttime + ", pupdatatime=" + pupdatatime
-				+ ", categoriesname=" + categoriesname + ", tagList=" + tagList + ", tids=" + Arrays.toString(tids)
-				+ ", tidsInt=" + Arrays.toString(tidsInt) + ", oldtagids=" + Arrays.toString(oldtagids) + "]";
+				+ ", pfine=" + pfine + ", drafts=" + drafts + ", pinserttime=" + pinserttime + ", pupdatatime="
+				+ pupdatatime + ", categoriesname=" + categoriesname + ", tagList=" + tagList + ", tids="
+				+ Arrays.toString(tids) + ", tidsInt=" + Arrays.toString(tidsInt) + ", oldtagids="
+				+ Arrays.toString(oldtagids) + "]";
 	}
 	
 	

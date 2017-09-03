@@ -67,6 +67,7 @@ jQuery(document).ready(function($){
               <div class="post-meta">  
               	<span class="categories" style="margin-right: 20px;">
               		分类：<select name="pcategoriesid">
+              				<option value="0">无分类</option>
               				<c:forEach items="${categoriesList }" var="categories">
               					<option value="${categories.cid }">${categories.cname }</option>
               				</c:forEach>
@@ -86,7 +87,8 @@ jQuery(document).ready(function($){
           
           <div class="post-text" style="margin: 0 auto;"> <!-- <img style="margin: 0 auto;" src="style/images/art/post1.jpg" alt="" /> --> <br />
           	<textarea id="editor_id1" name="pcontent"></textarea>
-	        <input type="submit" class="btn btn-primary" style="margin-left: 45%;margin-top: 10px;" value="保存"/>
+	        <input type="submit" class="btn btn-success" name="drafts" onclick="sendPost(this)" style="margin-left: 40%;margin-top: 10px;" value="保存"/>
+	        <input type="submit" class="btn btn-default" name="drafts" onclick="saveDrafts(this)" style="margin-top: 10px;" value="保存到草稿"/>
           </div>
           <!-- End Text --> 
           </div>
@@ -111,6 +113,14 @@ jQuery(document).ready(function($){
 <script type="text/javascript" charset="utf-8" src="<c:url value="/edtior/lang/zh-CN.js"/>"></script>
 <script type="text/javascript" charset="utf-8" src="<c:url value="/edtior/plugins/autoheight/autoheight.js"/>"></script>
 <!-- <script charset="utf-8" src="/js/jquery-1.6.2.min.js"></script> -->
+<script type="text/javascript">
+	function sendPost(drafts) {
+		drafts.value = 0;
+	}
+	function saveDrafts(drafts) {
+		drafts.value = 1;
+	}
+</script>
 <script>
         KindEditor.ready(function(K) {
             // 实例化编辑器1

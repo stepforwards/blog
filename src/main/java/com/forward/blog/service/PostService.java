@@ -19,6 +19,11 @@ public interface PostService {
 
 	List<Post> selectlatestPost();
 
+	void setFinePostById(Post post);
+
+	List<Post> selectFinePostList();
+
+
 	
 	
 }

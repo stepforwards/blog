@@ -17,6 +17,7 @@ public class FrontHomeController {
 	@RequestMapping("/index.action")
 	public String goIndex(Model m){
 		m.addAttribute("latestPostList", postService.selectlatestPost());
+		m.addAttribute("finePostList", postService.selectFinePostList());
 		return "/front/index";
 	}
 }

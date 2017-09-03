@@ -70,6 +70,7 @@ jQuery(document).ready(function($){
               <div class="post-meta">  
               	<span class="categories" style="margin-right: 20px;">
               		分类：<select name="pcategoriesid">
+              				<option value="0">无分类</option>
               				<c:forEach items="${categoriesList }" var="categories">
               					<option value="${categories.cid }" ${categories.cid eq post.pcategoriesid ? "selected" : ""}>${categories.cname }</option>
               				</c:forEach>

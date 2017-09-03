@@ -164,12 +164,14 @@ $(document).ready(function()
     <div class="carousel">
       <div id="carousel-scroll"><a href="#" id="prev">上一页</a><a href="#" id="next">下一页</a></div>
       <ul>
-        <li> <a href="#"> <span class="overlay details"></span><img src="style/images/art/c1.jpg" alt="" /> </a> </li>
-        <li> <a href="#"> <span class="overlay details"></span><img src="style/images/art/c2.jpg" alt="" /> </a> </li>
-        <li> <a href="#"> <span class="overlay details"></span><img src="style/images/art/c3.jpg" alt="" /> </a> </li>
-        <li> <a href="#"> <span class="overlay details"></span><img src="style/images/art/c4.jpg" alt="" /> </a> </li>
-        <li> <a href="#"> <span class="overlay details"></span><img src="style/images/art/c5.jpg" alt="" /> </a> </li>
-        <li> <a href="#"> <span class="overlay details"></span><img src="style/images/art/c6.jpg" alt="" /> </a> </li>
+      	<c:forEach items="${finePostList }" var="finePost" varStatus="status">
+	        <li> 
+	        	<a href="<c:url value="/front/blog/post.action"/>?pid=${finePost.pid}"> 
+	        		<span class="overlay details">${finePost.ptitle }</span>
+	        		<img src="style/images/art/c${status.count % 7 }.jpg" alt="" /> 
+	        	</a> 
+	        </li>
+      	</c:forEach>
       </ul>
     </div>
     <!-- End Latest Works -->

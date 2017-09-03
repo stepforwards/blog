@@ -52,6 +52,23 @@ public class PostServiceImpl implements PostService {
 		return postMapper.selectlatestPost();
 	}
 
+	@Override
+	public void setFinePostById(Post post) {
+		if(post.getPfine().equals("true")){
+			post.setPfine("checked");
+		}else{
+			post.setPfine("");
+		}
+		postMapper.setFinePostById(post);
+		
+	}
+
+	@Override
+	public List<Post> selectFinePostList() {
+		return postMapper.selectFinePostList();
+	}
+
+
 	
 
 }

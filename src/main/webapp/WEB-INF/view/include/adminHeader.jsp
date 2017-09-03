@@ -20,7 +20,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!-- Begin Menu -->
   <div id="menu" class="menu opacity">
     <ul>
-      <li><a href="<c:url value="/admin/post/postList.action"/>">博文管理</a></li>
+      <li><a href="<c:url value="/admin/post/postList.action"/>">博文管理</a>
+      	<ul>
+      	  <li><a href="<c:url value="/admin/post/postList.action"/>">已发布</a></li>
+      	  <li><a href="<c:url value="/admin/post/draftsPostList.action"/>?drafts=1">未发布</a></li>
+        </ul>
+      </li>
       <li><a href="<c:url value="/admin/categories/categoriesList.action"/>">分类管理</a></li>
       <li><a href="<c:url value="/admin/tag/tagList.action"/>">标签管理</a></li>
       <li><a href="<c:url value="/admin/album/album.action"/>"  class="active">多媒体管理</a>

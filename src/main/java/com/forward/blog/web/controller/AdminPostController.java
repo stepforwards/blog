@@ -35,6 +35,14 @@ public class AdminPostController {
 		m.addAttribute("kvo", kvo);
 		return "/admin/index";
 	}
+	@RequestMapping("/draftsPostList.action")
+	public String inDraftsPostList(Model m,KVO kvo){
+		m.addAttribute("postList", postService.selectPostList(kvo));
+		m.addAttribute("categoriesList", categoriesService.selectCategoriesList());
+		m.addAttribute("tagList", tagService.selectTagList());
+		m.addAttribute("kvo", kvo);
+		return "/admin/indexDrafts";
+	}
 	
 	/**  
 	* @Title: inNewPost  
@@ -89,6 +97,13 @@ public class AdminPostController {
 		return "redirect:/admin/post/postList.action";
 	}
 	
+	@RequestMapping("/deleteDraftsPostById.action")
+	public String deleteDraftsPostById(Post post){
+		postService.deletePostById(post);
+		tagService.deletePostTagByPostId(post.getPid());
+		return "redirect:/admin/post/draftsPostList.action?drafts=1";
+	}
+	
 	/**  
 	* @Title: editPostById  
 	* @Description: 通过文章id查找文章数据，查询分类及标签信息
@@ -118,4 +133,10 @@ public class AdminPostController {
 		MySetTpcontact.updateTpcontact(post, tagService);
 		return "redirect:/admin/post/postList.action";
 	}
+	
+	@RequestMapping("/setFinePostById.action")
+	public void setFinePostById(Post post){
+		postService.setFinePostById(post);
+	}
+	
 }
