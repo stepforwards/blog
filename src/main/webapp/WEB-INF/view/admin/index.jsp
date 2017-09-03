@@ -77,7 +77,30 @@ $(document).ready(function()
     </div>
     <!-- Begin Latest Works -->
     <h2>文章列表</h2>
-      <div id="carousel-scroll"><a href="#" id="prev">上一页</a><a href="#" id="next">下一页</a></div>
+      <form class="search" action="<c:url value="/admin/post/postList.action"/>" method="post">
+      	<div class="searchform" style="width: 300px;display: inline-block;">
+	      	 <input  type="text" id="s" name="ptitle" value="${kvo.ptitle }" placeholder="请输入文章标题" onblur="searchform()"/>
+      	</div>
+      	 <span class="categories" style="margin-right: 20px;">
+       	  分类：<select name="pcategoriesid">
+       	  			<option value="0">无分类</option>
+       				<c:forEach items="${categoriesList }" var="categories">
+       					<option value="${categories.cid }" ${categories.cid eq kvo.pcategoriesid ? "selected" : "" }>${categories.cname }</option>
+       				</c:forEach>
+       		 </select>
+       	 </span>
+       	 <span  style=" display: inline-block;">
+       	 标签：
+       	 	 <select name="pcategoriesid">
+       	 	 		<option value="0">全部</option>
+       				<c:forEach items="${tagList }" var="tag">
+       					<option value="${tag.tid }" ${tag.tid eq kvo.tid ? "selected" : "" }>${tag.tname }</option>
+       				</c:forEach>
+       		 </select>
+         			&nbsp;
+         </span>
+      </form>
+      <br>
       <table>
           <!-- <th class="center"><h4>
             Centered Header 3
@@ -125,6 +148,12 @@ $(document).ready(function()
 <!-- End Wrapper --> 
 
 <script type="text/javascript" src="style/js/scripts.js"></script>
+<script type="text/javascript">
+	function searchform(){
+		$(".search").submit();
+	}
+	
+</script>
 </body>
 </html>
 

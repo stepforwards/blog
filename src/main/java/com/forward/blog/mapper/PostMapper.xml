@@ -18,13 +18,20 @@
 		</collection>
 	</resultMap>
 	
-	<select id="selectPostList" parameterType="Post" resultMap="PostMap">
+	<select id="selectPostList" parameterType="KVO" resultMap="PostMap">
 		SELECT t_post.*,tid,t_tag.tname tagname,t_categories.cname categoriesname
 		FROM
 		t_post
 		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
 		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
 		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
+		WHERE ptitle LIKE '%' #{ptitle} '%'
+		<if test="pcategoriesid != null and pcategoriesid != '' ">
+		 	AND pcategoriesid = #{pcategoriesid}
+		</if>
+		<if test="tid != null and tid != '' ">
+			AND tid = #{tid}
+		</if>
 	</select>
 	
 	<select id="insertPost" parameterType="Post">
@@ -52,7 +59,10 @@
 	<select id="updatePostById" parameterType="Post">
 		update t_post set ptitle = #{ptitle},pcontent = #{pcontent},pcategoriesid = #{pcategoriesid},
 		pupdatatime = #{pupdatatime} where pid = #{pid}
-		
+	</select>
+	
+	<select id="selectlatestPost" resultType="Post">
+		select * from t_post ORDER BY pid DESC LIMIT 0,5
 	</select>
 	
 </mapper>

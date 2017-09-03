@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -21,10 +22,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="one-fourth">
         <h3>最新文章</h3>
         <ul class="latest-posts">
-          <li><span class="date"><em class="day">22</em><em class="month">6</em></span> <a href="#">什么是大数据</a> </li>
-          <li><span class="date"><em class="day">14</em><em class="month">5</em></span> <a href="#">AI设计</a> </li>
-          <li><span class="date"><em class="day">11</em><em class="month">5</em></span> <a href="#">时光的未来</a> </li>
-          <li><span class="date"><em class="day">08</em><em class="month">4</em></span> <a href="#">优秀的程序员</a> </li>
+          <c:forEach items="${latestPostList }" var="latestPost">
+	            <li style="margin-bottom: 20px;">
+	            	<span class="date" >
+	            		<em class="day"><fmt:formatDate value="${latestPost.pinserttime }" type="both" pattern="dd"/></em>
+	            		<em class="month"><fmt:formatDate value="${latestPost.pinserttime }" type="both" pattern="MM"/></em>
+	            	</span> 
+	            	<a href="<c:url value="/front/blog/post.action"/>?pid=${latestPost.pid}">${latestPost.ptitle }</a> 
+	            </li>
+          	</c:forEach>
         </ul>
       </div>
       <div class="one-fourth">

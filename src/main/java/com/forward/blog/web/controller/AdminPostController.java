@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.forward.blog.model.KVO;
 import com.forward.blog.model.MySetTpcontact;
 import com.forward.blog.model.Post;
 import com.forward.blog.model.Tpcontact;
@@ -27,8 +28,11 @@ public class AdminPostController {
 	TagService tagService;
 	
 	@RequestMapping("/postList.action")
-	public String inPostList(Model m){
-		m.addAttribute("postList", postService.selectPostList());
+	public String inPostList(Model m,KVO kvo){
+		m.addAttribute("postList", postService.selectPostList(kvo));
+		m.addAttribute("categoriesList", categoriesService.selectCategoriesList());
+		m.addAttribute("tagList", tagService.selectTagList());
+		m.addAttribute("kvo", kvo);
 		return "/admin/index";
 	}
 	

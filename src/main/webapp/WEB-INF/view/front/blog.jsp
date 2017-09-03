@@ -92,20 +92,24 @@ jQuery(document).ready(function($){
 	            	
 	          </div>
 	          <!-- End Text --> 
-	          <span class="tags"><a href="#">Black & White</a>, <a href="#">Color</a>, <a href="#">Portfolio</a></span>
+	          <span class="tags">
+	          	 <c:forEach items="${post.tagList }" var="tag">
+		          			${tag.tname }&nbsp;
+		          </c:forEach>
+	          </span>
 	        </div>
 	        <!-- End Post --> 
         </c:forEach>
         
         <!-- Begin Page Navi -->
-    			<div class="page-navi">
+    			<!-- <div class="page-navi">
     				<p>Page 1 of 3</p>
     				<ul>
     					<li><a href="#" class="current">1</a></li>
     					<li><a href="#">2</a></li>
     					<li><a href="#">3</a></li>
     				</ul>
-    			</div>
+    			</div> -->
         <!-- End Page Navi -->
         
       </div>

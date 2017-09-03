@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.forward.blog.mapper.PostMapper;
+import com.forward.blog.model.KVO;
 import com.forward.blog.model.Post;
 import com.forward.blog.service.PostService;
 
@@ -17,9 +18,8 @@ public class PostServiceImpl implements PostService {
 	PostMapper postMapper;
 	
 	@Override
-	public List<Post> selectPostList() {
-		 
-		return postMapper.selectPostList();
+	public List<Post> selectPostList(KVO kvo) {
+		return postMapper.selectPostList(kvo);
 	}
 
 	@Override
@@ -46,5 +46,12 @@ public class PostServiceImpl implements PostService {
 		postMapper.updatePostById(post);
 		
 	}
+
+	@Override
+	public List<Post> selectlatestPost() {
+		return postMapper.selectlatestPost();
+	}
+
+	
 
 }

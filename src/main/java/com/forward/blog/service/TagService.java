@@ -15,4 +15,5 @@ public interface TagService {
 
 	void deletePostTagByPostIdAndTagid(Tpcontact tpcontact);
 
+
 }
