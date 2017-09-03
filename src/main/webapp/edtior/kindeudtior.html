@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="themes/simple/simple.css"/>
+    </head>
+<body>
+<form name="example" method="post" action="http://localhost:8080/personalWebsiteFront/studentInfo/addNewInfo">
+        <textarea id="editor_id1" name="textInfo" style="width:700px;height:300px;">
+        </textarea>
+        <input type="submit" name="button" value="提交内容" /> (提交快捷键: Ctrl + Enter)
+</form>
+<script charset="utf-8" src="kindeditor-all.js"></script>
+<script charset="utf-8" src="lang/zh-CN.js"></script>
+<script charset="utf-8" src="js/jquery-1.11.2.min.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+            // 实例化编辑器1
+            editor1 = K.create('#editor_id1',{
+            uploadJson : 'jsp/upload_json.jsp',
+            fileManagerJson : 'jsp/file_manager_json.jsp',
+            allowFileManager : true,   //否开启【浏览服务器】功能
+            items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                    'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+                    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                    'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                    'anchor', 'link', 'unlink', '|', 'about'
+            ],themeType : 'simple',
+            });
+    });
+</script>
+</body>
+</html>

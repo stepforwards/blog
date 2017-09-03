@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.PostMapper">
+	
+	<resultMap type="Post" id="PostMap">
+		<id column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="ptitle" property="ptitle" jdbcType="VARCHAR"/>
+		<result column="pcontent" property="pcontent" jdbcType="VARCHAR"/>
+		<result column="pcommentid" property="pcommentid" jdbcType="INTEGER"/>
+		<result column="pcategoriesid" property="pcategoriesid" jdbcType="INTEGER"/>
+		<result column="pfine" property="pfine" jdbcType="VARCHAR"/>
+		<result column="pinserttime" property="pinserttime" jdbcType="TIMESTAMP"/>
+		<result column="pupdatatime" property="pupdatatime" jdbcType="TIMESTAMP"/>
+		<result column="categoriesname" property="categoriesname" jdbcType="VARCHAR"/>
+		<collection property="tagList" ofType="Tag" >
+			<id column="tid" property="tid" jdbcType="INTEGER"/>
+			<result column="tagname" property="tname" jdbcType="VARCHAR"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectPostList" parameterType="Post" resultMap="PostMap">
+		SELECT t_post.*,tid,t_tag.tname tagname,t_categories.cname categoriesname
+		FROM
+		t_post
+		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
+		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
+		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
+	</select>
+	
+	<select id="insertPost" parameterType="Post">
+		insert into t_post(ptitle,pcontent,pcategoriesid,pinserttime) values(#{ptitle},#{pcontent},#{pcategoriesid},#{pinserttime})
+	</select>
+	
+	<select id="selectNewPostId" resultType="Integer">
+		SELECT MAX(pid) FROM t_post
+	</select>
+	
+	<delete id="deletePostById" parameterType="Post">
+		DELETE FROM t_post WHERE t_post.pid = #{pid}
+	</delete>
+	
+	<select id="selectPostById" parameterType="Post" resultMap="PostMap">
+		SELECT t_post.*,tid,t_tag.tname tagname,t_categories.cname categoriesname
+		FROM
+		t_post
+		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
+		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
+		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
+		WHERE t_post.pid = #{pid}
+	</select>
+	
+	<select id="updatePostById" parameterType="Post">
+		update t_post set ptitle = #{ptitle},pcontent = #{pcontent},pcategoriesid = #{pcategoriesid},
+		pupdatatime = #{pupdatatime} where pid = #{pid}
+		
+	</select>
+	
+</mapper>
