@@ -9,4 +9,8 @@
 	<insert id="insertCategories" parameterType="Categories">
 		insert into t_categories(cname) values(#{cname})
 	</insert>
+	
+	<delete id="deleteCategoriesById" parameterType="Categories">
+		delete from t_categories where cid = #{cid}
+	</delete>
 </mapper>

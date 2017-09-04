@@ -10,4 +10,6 @@ public interface CategoriesMapper {
 
 	void insertCategories(Categories categories);
 
+	void deleteCategoriesById(Categories categories);
+
 }

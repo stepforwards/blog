@@ -10,4 +10,6 @@ public interface CategoriesService {
 
 	void addCategories(Categories categories);
 
+	void deleteCategoriesById(Categories categories);
+
 }
