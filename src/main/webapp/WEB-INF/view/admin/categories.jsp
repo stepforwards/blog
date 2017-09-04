@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Forward's Blog|Admin</title>
 <jsp:include page="/WEB-INF/view/include/style.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css" media="all" />
 <jsp:include page="/WEB-INF/view/include/script.jsp"></jsp:include>
 <script type="text/javascript">
 jQuery(document).ready(function($){
@@ -70,16 +71,23 @@ $(document).ready(function()
   
   <!-- Begin Container -->
   <div id="container" class="opacity"> 
-    <a href="<c:url value="/admin/categories/addCategories.action"/>" class="button blue">添加分类</a>
+  	<form action="<c:url value="/admin/categories/addCategories.action"/>" method="post">
+  		<input class="form-control" name="cname" type="text" style="width: 300px;height: 30px;display: inline-block;" placeholder="分类名称">
+  		<input style="color:white;background-color: #3388ff;box-sizing: border-box;border-radius: 5px 4px 3px 2px;height: 30px; " type="submit" value="添加分类">
+  	</form>
     <div id="footer">
       <div class="footer-top"></div>
     </div>
     <!-- Begin Latest Works -->
     <h2>分类</h2>
-         <div class="note-box" style="">journal <span>24</span><a style="float: right;">编辑</a>&nbsp;<a style="float: right;">删除</a></div>
-         <div class="note-box" style="">journal <span>24</span><a style="float: right;">删除</a></div>
-         <div class="note-box" style="">journal <span>24</span><a style="float: right;">删除</a></div>
-         <div class="note-box" style="">journal <span>24</span><a style="float: right;">删除</a></div>
+    	<c:forEach items="${categoriesList }" var="categories">
+	        <div class="note-box" style="">
+	        	${categories.cname } <!-- <span>3</span> -->
+	        	<a href="<c:url value="/admin/categories/deleteCategories.action"/>?cid=${categories.cid}" style="float: right;">删除</a>
+	        	<span style="float: right;">&nbsp;&nbsp;</span>
+	        	<a href="<c:url value="/admin/categories/editorCategories.action"/>?cid=${categories.cid}" style="float: right;">编辑</a>
+	        </div>
+    	</c:forEach>
       <div class="hr1"></div>
     <!-- End Latest Works -->
 	

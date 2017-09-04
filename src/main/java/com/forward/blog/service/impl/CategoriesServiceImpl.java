@@ -17,8 +17,12 @@ public class CategoriesServiceImpl implements CategoriesService {
 	
 	@Override
 	public List<Categories> selectCategoriesList() {
-		
 		return categoriesMapper.selectCategoriesList();
+	}
+
+	@Override
+	public void addCategories(Categories categories) {
+		categoriesMapper.insertCategories(categories);
 	}
 
 }

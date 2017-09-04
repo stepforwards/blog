@@ -8,4 +8,6 @@ public interface CategoriesMapper {
 
 	List<Categories> selectCategoriesList();
 
+	void insertCategories(Categories categories);
+
 }

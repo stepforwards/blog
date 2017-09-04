@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="style/type/museo.css" media="all" />
 <link rel="stylesheet" type="text/css" href="style/type/ptsans.css" media="all" />
 <link rel="stylesheet" type="text/css" href="style/type/charis.css" media="all" />
+<!-- <link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css" media="all" /> -->
 
 <!--[if IE 7]>
 <link rel="stylesheet" type="text/css" href="style/css/ie7.css" media="all" />

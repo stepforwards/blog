@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="cat-list">
             <ul>
               <c:forEach items="${categoriesList }" var="categories">
-	              <li><a href="<c:url value="/front/blog/posts.action"/>?pcategoriesid=${categories.cid}">${categories.cname}<!-- <span>24</span> --></a></li>
+	              <li><a href="<c:url value="/front/blog/posts.action"/>?pcategoriesid=${categories.cid}">${categories.cname}<%-- <span>4</span> --%></a></li>
               </c:forEach>
            </ul>
           </div>

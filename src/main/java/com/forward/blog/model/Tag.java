@@ -3,6 +3,14 @@ package com.forward.blog.model;
 public class Tag {
 	private int tid;
 	private String tname;
+	private int num;
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getTid() {
 		return tid;
 	}
@@ -17,7 +25,7 @@ public class Tag {
 	}
 	@Override
 	public String toString() {
-		return "Tag [tid=" + tid + ", tname=" + tname + "]";
+		return "Tag [tid=" + tid + ", tname=" + tname + ", num=" + num + "]";
 	}
 	
 }

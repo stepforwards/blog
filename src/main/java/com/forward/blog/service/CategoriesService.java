@@ -8,4 +8,6 @@ public interface CategoriesService {
 
 	List<Categories> selectCategoriesList();
 
+	void addCategories(Categories categories);
+
 }

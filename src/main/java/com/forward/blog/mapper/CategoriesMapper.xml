@@ -6,4 +6,7 @@
 		select * from t_categories
 	</select>
 	
+	<insert id="insertCategories" parameterType="Categories">
+		insert into t_categories(cname) values(#{cname})
+	</insert>
 </mapper>
