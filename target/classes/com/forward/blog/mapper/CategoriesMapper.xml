@@ -7,10 +7,15 @@
 	</select>
 	
 	<insert id="insertCategories" parameterType="Categories">
-		insert into t_categories(cname) values(#{cname})
+		insert into t_categories(cname,cdesc) values(#{cname},#{cdesc})
 	</insert>
+	
+	<update id="updateCategoriesById" parameterType="Categories">
+		update t_categories set cname = #{cname},cdesc = #{cdesc} where cid = #{cid}
+	</update>
 	
 	<delete id="deleteCategoriesById" parameterType="Categories">
 		delete from t_categories where cid = #{cid}
 	</delete>
+	
 </mapper>

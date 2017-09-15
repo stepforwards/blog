@@ -12,4 +12,6 @@ public interface CategoriesService {
 
 	void deleteCategoriesById(Categories categories);
 
+	void updateCategoriesById(Categories categories);
+
 }

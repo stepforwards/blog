@@ -15,5 +15,11 @@ public interface TagService {
 
 	void deletePostTagByPostIdAndTagid(Tpcontact tpcontact);
 
+	void addTag(Tag tag);
+
+	void updateTagById(Tag tag);
+
+	void deleteTagById(Tag tag);
+
 
 }

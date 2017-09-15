@@ -36,5 +36,20 @@ public class TagServiceImpl implements TagService {
 		tagMapper.deletePostTagByPostIdAndTagid(tpcontact);
 	}
 
+	@Override
+	public void addTag(Tag tag) {
+		tagMapper.addTag(tag);
+	}
+
+	@Override
+	public void updateTagById(Tag tag) {
+		tagMapper.updateTagById(tag);
+	}
+
+	@Override
+	public void deleteTagById(Tag tag) {
+		tagMapper.deleteTagById(tag);
+	}
+
 
 }

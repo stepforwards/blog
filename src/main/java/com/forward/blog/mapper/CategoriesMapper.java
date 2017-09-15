@@ -12,4 +12,6 @@ public interface CategoriesMapper {
 
 	void deleteCategoriesById(Categories categories);
 
+	void updateCategoriesById(Categories categories);
+
 }

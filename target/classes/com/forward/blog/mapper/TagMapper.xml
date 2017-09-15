@@ -18,4 +18,15 @@
 		DELETE FROM t_tpcontact WHERE tptagid = #{tptagid} and tppostid = #{tppostid}
 	</delete>
 	
+	<insert id="addTag" parameterType="Tag">
+		insert into t_tag(tname,tdesc) values(#{tname},#{tdesc})
+	</insert>
+	
+	<update id="updateTagById" parameterType="Tag">
+		update t_tag set tname = #{tname},tdesc = #{tdesc} where tid = #{tid}
+	</update>
+	
+	<delete id="deleteTagById" parameterType="Tag">
+		delete from t_tag where tid = #{tid}
+	</delete>
 </mapper>

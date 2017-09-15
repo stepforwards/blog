@@ -73,24 +73,32 @@ $(document).ready(function()
   
   <!-- Begin Container -->
   <div id="container" class="opacity"> 
-  	<form action="<c:url value="/admin/categories/addCategories.action"/>" method="post">
-  		<input class="form-control" name="cname" type="text" style="width: 300px;height: 30px;display: inline-block;" placeholder="分类名称">
-  		<input style="color:white;background-color: #3388ff;box-sizing: border-box;border-radius: 5px 4px 3px 2px;height: 30px; " type="submit" value="添加分类">
-  	</form>
+  	<h2>分类管理</h2>
     <div id="footer">
       <div class="footer-top"></div>
     </div>
     <!-- Begin Latest Works -->
-    <h2>分类</h2>
+    	<form class="download-box" style="box-sizing: border-box;" action="<c:url value="/admin/categories/addCategories.action"/>" method="post" >
+        	<input class="form-control" name="cname" type="text" style="width: 250px;height: 30px;display: inline-block;" placeholder="分类名称">
+        	<input class="form-control" name="cdesc" type="text" style="width: 400px;height: 30px;display: inline-block; margin-left: 30px;margin-right: 45px;" placeholder="分类描述">
+        	<input style="color:white;background-color: #3388ff;box-sizing: border-box;border-radius: 5px 4px 3px 2px;height: 30px; " type="submit" value="添加分类">
+        	<span style="float: right;">&nbsp;&nbsp;</span>
+	    </form>
     	<c:forEach items="${categoriesList }" var="categories">
 	        <div class="note-box" style="">
-	        	${categories.cname } <!-- <span>3</span> -->
-	        	<a href="<c:url value="/admin/categories/deleteCategories.action"/>?cid=${categories.cid}" style="float: right;">删除</a>
-	        	<span style="float: right;">&nbsp;&nbsp;</span>
-	        	<a href="<c:url value="/admin/categories/editorCategories.action"/>?cid=${categories.cid}" style="float: right;">编辑</a>
+		        <form id="updateCategories${categories.cid}" action="<c:url value="/admin/categories/updateCategories.action"/>" method="post">
+		        	<input name="cname" value="${categories.cname }" placeholder="分类名称">
+		        	  <!-- <span>3</span> -->&nbsp;*&nbsp;&nbsp;
+		        	<input name="cdesc" value="${categories.cdesc }" placeholder="分类描述" style="width: 500px;">
+		        	<input type="hidden" name="cid" value="${categories.cid}">
+		        	<a href="<c:url value="/admin/categories/deleteCategories.action"/>?cid=${categories.cid}" style="float: right;margin-right: 9px;">删除</a>
+		        	<span style="float: right;">&nbsp;&nbsp;</span>
+		        	<a onclick="updateCategories(${categories.cid})" style="float: right;">更新</a>
+		        </form>
 	        </div>
     	</c:forEach>
-      <div class="hr1"></div>
+    	
+		<div class="hr1"></div>
     <!-- End Latest Works -->
 	
   </div>
@@ -103,5 +111,10 @@ $(document).ready(function()
 <!-- End Wrapper --> 
 
 <script type="text/javascript" src="style/js/scripts.js"></script>
+<script type="text/javascript">
+	function updateCategories(cid) {
+		$("#updateCategories"+cid).submit();
+	}
+</script>
 </body>
 </html>

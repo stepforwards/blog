@@ -30,4 +30,9 @@ public class CategoriesServiceImpl implements CategoriesService {
 		categoriesMapper.deleteCategoriesById(categories);
 	}
 
+	@Override
+	public void updateCategoriesById(Categories categories) {
+		categoriesMapper.updateCategoriesById(categories);
+	}
+
 }

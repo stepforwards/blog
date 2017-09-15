@@ -27,6 +27,12 @@ public class AdminCategoriesController {
 		return "redirect:/admin/categories/categoriesList.action";
 	}
 	
+	@RequestMapping("/updateCategories.action")
+	public String updateCategories(Categories categories){
+		categoriesService.updateCategoriesById(categories);
+		return "redirect:/admin/categories/categoriesList.action";
+	}
+	
 	@RequestMapping("/deleteCategories.action")
 	public String deleteCategories(Categories categories){
 		categoriesService.deleteCategoriesById(categories);
