@@ -38,7 +38,9 @@ jQuery(document).ready(function($){
 <div id="wrapper">
   
   <!-- Begin Menu -->
- 	<jsp:include page="/WEB-INF/view/include/adminHeader.jsp"></jsp:include>
+ 	<jsp:include page="/WEB-INF/view/include/adminHeader.jsp">
+ 		<jsp:param value="comment" name="fromJsp"/>
+ 	</jsp:include>
   <!-- End Menu --> 
   
   <!-- Begin Container -->

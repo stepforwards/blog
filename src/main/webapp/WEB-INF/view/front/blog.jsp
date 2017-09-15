@@ -42,7 +42,9 @@ jQuery(document).ready(function($){
 <div id="wrapper">
   
  <!-- Begin Menu -->
-  <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/view/include/header.jsp">
+  		<jsp:param value="post" name="fromJsp"/>
+  </jsp:include>
   <!-- End Menu -->  
   
   <!-- Begin Container -->
