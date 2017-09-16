@@ -51,6 +51,7 @@ public class AdminAlbumController {
 		if(photo == null) return "redirect:/admin/album.action";
 		String uuid = UUID.randomUUID().toString().replaceAll("-", "");
 		String extension = FilenameUtils.getExtension(photo.getOriginalFilename());
+		if(extension.equals("")) return "redirect:/admin/album/album.action";
 		String fileName = uuid + "." + extension;
 		String pathname = "D:\\blogpic\\album";
 		photo.transferTo(new File(pathname+"\\"+fileName));

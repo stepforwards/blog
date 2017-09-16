@@ -140,8 +140,15 @@ $.fn.imagesLoaded = function(a) {
   
   <!-- Begin Container -->
   <div id="container" class="opacity">
-    <h2>Our Portfolio</h2>
-    <p>Pellentesque congue, lorem sed pulvinar faucibus, neque elit ullamcorper mi, in pretium odio dolor et ligula. Nullam ultricies ullamcorper turpis id semper. Vestibulum vel turpis sit amet lectus tincidunt euismod. Vestibulum suscipit neque bibendum sapien auctor luctus.</p>
+    <h2>时光相册</h2>
+    <p>
+    	年难留，时易损。
+    	让人回味，让人无奈。
+    	人寿几何?逝如朝霞。
+    	时无重至，华不在阳。
+    	忘记今天的人将被明天忘记。
+    	不要为已消逝之年华叹息，须正视欲匆匆溜走的时光。
+    </p>
     
     <!-- Begin Portfolio -->
       <div id="portfolio">

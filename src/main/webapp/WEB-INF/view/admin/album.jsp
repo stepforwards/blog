@@ -72,16 +72,15 @@ $(document).ready(function()
   
   <!-- Begin Container -->
   <div id="container" class="opacity"> 
-  	 <form action="<c:url value="/admin/album/addAlbum.action"/>" enctype="multipart/form-data" method="post">
+  	 <form id="uploadAlbum" action="<c:url value="/admin/album/addAlbum.action"/>" enctype="multipart/form-data" method="post">
     		<div style="margin: 0 auto;width: 400px;">
   	 		上传图片：<input name="photo" style="margin-bottom: 10px;" class="button blue" type="file"><br>
     			<input type="text" name="alname" style="width: 400px;" placeholder="图片标题">
-    			<br>
     			<textarea rows="" cols="" name="aldesc" style="width: 398px;height:50px;resize: none;" placeholder="图片描述"></textarea>
-    			<br>
+    			<input type="button" style="margin: 0;width: 403px;" onclick="uploadAlbum()" value="上传">
     		</div>
      </form>
-     
+     <hr>
   	 <form id="search" action="<c:url value="/admin/album/album.action"/>" method="post">
     		<div style="margin: 0 auto;width: 400px;">
   	 			<input name="alname" type="search" style="width: 353px;height: 24px;" value="${alname }" placeholder="搜索图片标题">
@@ -90,16 +89,16 @@ $(document).ready(function()
 				<input type="submit" style="margin: 0;" value="搜索">
     		</div>
      </form>
-  	 <form action="<c:url value="/admin/album/setPostPalbumidByPostId.action"/>" method="post">
+  	 <form id="setPostPalbumidByPostId" action="<c:url value="/admin/album/setPostPalbumidByPostId.action"/>" method="post">
     		<div style="margin: 0 auto;width: 400px;">
-    			<select name="pid" style="margin-top: 3px;width: 230px;height: 30px;">
+    			<select id="pid" name="pid" style="margin-top: 3px;width: 230px;height: 30px;">
     					<option value="">设置博文封面</option>
     				<c:forEach items="${postList }" var="post">
 	    				<option value="${post.pid }">${post.ptitle }</option>
     				</c:forEach>
     			</select>
   	 			<input name="palbumid" type="text" style="width: 115px;height: 24px;" placeholder="请填写图片id">
-				<input type="submit"  value="添加">
+				<input type="button" onclick="setPostPalbumidByPostId()"  value="添加">
     		</div>
      </form>
     <div id="footer">
@@ -116,12 +115,14 @@ $(document).ready(function()
    			<div style="display: inline-block; margin-right: 14px;margin-top:10px; text-align: center;">
    				<span>id:${album.aid}&nbsp;
    					title:
-   					<c:if test="${!album.alname eq '' }">
-   						${album.alname }
-   					</c:if>
-   					<c:if test="${album.alname eq '' }">
-   						null
-   					</c:if>
+   					<c:choose>
+   						<c:when test="${album.alname eq '' }">
+   							null
+   						</c:when>
+   						<c:otherwise>
+   							${album.alname }
+   						</c:otherwise>
+   					</c:choose>
    				</span>
    				<br>
 		    	<a href="/${album.alurl }"> 
@@ -149,6 +150,16 @@ function albumListSearchPaging(page){
 	$("#prevOrNext").val(page);
 	$("#firstPage").val("false");
 	$("#search").submit();
+}
+function uploadAlbum() {
+	if($(':file').val() !== ""){
+		$('#uploadAlbum').submit();
+	}
+}
+function setPostPalbumidByPostId() {
+	if($('#pid').val() !== ""){
+		$("#setPostPalbumidByPostId").submit();
+	}
 }
 </script>
 </body>
