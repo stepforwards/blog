@@ -45,6 +45,9 @@ jQuery(document).ready(function($){
   
   <!-- Begin Container -->
   <div id="container" class="opacity">
+  	<div id="footer">
+      <div class="footer-top"></div>
+    </div>
     <div class="full-width">
       <h3>Testimonials</h3>
       <div class="quote">
@@ -58,7 +61,7 @@ jQuery(document).ready(function($){
         <span>by <em>John Doe</em></span> </div>
     </div>
     <!-- End Full Width -->
-    
+    <div class="hr1"></div>
   </div>
     <div class="clear"></div>
   <!-- End Container -->

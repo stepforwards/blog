@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.forward.blog.model.KVO;
 import com.forward.blog.model.Post;
+import com.forward.blog.service.AlbumService;
 import com.forward.blog.service.CategoriesService;
 import com.forward.blog.service.PostService;
 import com.forward.blog.service.TagService;
@@ -22,6 +23,8 @@ public class FrontBolgController {
 	CategoriesService categoriesService;
 	@Autowired
 	TagService tagService;
+	@Autowired
+	AlbumService albumService;
 	
 	@RequestMapping("/posts.action")
 	public String inBlog(Model m,KVO kvo){
@@ -30,6 +33,7 @@ public class FrontBolgController {
 		m.addAttribute("tagList", tagService.selectTagList());
 		m.addAttribute("ptitle", kvo.getPtitle());
 		m.addAttribute("latestPostList", postService.selectlatestPost());
+		m.addAttribute("albumSharingList", albumService.selectAlbumPartList());
 		return "/front/blog";
 	}
 	@RequestMapping("/post.action")
@@ -38,6 +42,7 @@ public class FrontBolgController {
 		m.addAttribute("categoriesList", categoriesService.selectCategoriesList());
 		m.addAttribute("tagList", tagService.selectTagList());
 		m.addAttribute("latestPostList", postService.selectlatestPost());
+		m.addAttribute("albumSharingList", albumService.selectAlbumPartList());
 		return "/front/post";
 	}
 }

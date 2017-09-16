@@ -19,8 +19,23 @@ public class Post {
 	private String[] tids;
 	private int[] tidsInt;
 	private String[] oldtagids;
+	private int palbumid;
+	private String palbumurl;
 	
 	
+	
+	public int getPalbumid() {
+		return palbumid;
+	}
+	public void setPalbumid(int palbumid) {
+		this.palbumid = palbumid;
+	}
+	public String getPalbumurl() {
+		return palbumurl;
+	}
+	public void setPalbumurl(String palbumurl) {
+		this.palbumurl = palbumurl;
+	}
 	public int getDrafts() {
 		return drafts;
 	}

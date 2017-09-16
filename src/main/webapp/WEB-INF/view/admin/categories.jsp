@@ -77,6 +77,7 @@ $(document).ready(function()
     <div id="footer">
       <div class="footer-top"></div>
     </div>
+    
     <!-- Begin Latest Works -->
     	<form class="download-box" style="box-sizing: border-box;" action="<c:url value="/admin/categories/addCategories.action"/>" method="post" >
         	<input class="form-control" name="cname" type="text" style="width: 250px;height: 30px;display: inline-block;" placeholder="分类名称">

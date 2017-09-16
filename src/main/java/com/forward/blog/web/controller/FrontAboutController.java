@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.forward.blog.service.AlbumService;
 import com.forward.blog.service.PostService;
 
 @Controller
@@ -13,10 +14,13 @@ public class FrontAboutController {
 	
 	@Autowired
 	PostService postService;
+	@Autowired
+	AlbumService albumService;
 	
 	@RequestMapping("/about.action")
 	public String inAbout(Model m){
 		m.addAttribute("latestPostList", postService.selectlatestPost());
+		m.addAttribute("albumSharingList", albumService.selectAlbumPartList());
 		return "/front/about";
 	}
 }

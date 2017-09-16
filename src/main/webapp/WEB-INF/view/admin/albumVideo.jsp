@@ -88,7 +88,7 @@ $(document).ready(function()
 	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c5.jpg" alt="" /> </a> <a>删除</a>
 	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c6.jpg" alt="" /> </a> <a>删除</a>
     <!-- End Latest Works -->
-	
+	<div class="hr1"></div>
   </div>
   <!-- End Container -->
   

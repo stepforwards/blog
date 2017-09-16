@@ -68,6 +68,16 @@ public class PostServiceImpl implements PostService {
 		return postMapper.selectFinePostList();
 	}
 
+	@Override
+	public List<Post> selectAllPostList() {
+		return postMapper.selectAllPostList();
+	}
+
+	@Override
+	public void updateSetPostPalbumidByPostId(Post post) {
+		postMapper.setPostPalbumidByPostId(post);
+	}
+
 
 	
 

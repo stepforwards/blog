@@ -170,7 +170,14 @@ $(document).ready(function()
 	        <li> 
 	        	<a href="<c:url value="/front/blog/post.action"/>?pid=${finePost.pid}"> 
 	        		<span class="overlay details">${finePost.ptitle }</span>
-	        		<img src="style/images/art/c${status.count % 7 }.jpg" alt="" /> 
+	        		<c:choose>
+	        			<c:when test="${finePost.palbumurl eq null }">
+	        				<img src="style/images/art/c${status.count % 7 }.jpg" alt="" /> 
+	        			</c:when>
+	        			<c:otherwise>
+		        			<img src="/${finePost.palbumurl }" style="width: 164px;height: 130px;" alt="" /> 
+	        			</c:otherwise>
+	        		</c:choose>
 	        	</a> 
 	        </li>
       	</c:forEach>

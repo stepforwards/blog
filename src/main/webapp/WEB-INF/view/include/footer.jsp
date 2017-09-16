@@ -36,15 +36,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="one-fourth">
         <h3>相片分享</h3>
         <ul class="flickr">
-          <li><a href="#"><img src="style/images/art/f1.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="style/images/art/f2.jpg" alt="" /></a></li>
+          <c:forEach items="${albumSharingList }" var="album">
+	          <li><a href="/${album.alurl }"><img src="/${album.alurl }" alt="${album.alname }" /></a></li>
+          </c:forEach>
+         <!--  <li><a href="#"><img src="style/images/art/f2.jpg" alt="" /></a></li>
           <li><a href="#"><img src="style/images/art/f3.jpg" alt="" /></a></li>
           <li><a href="#"><img src="style/images/art/f4.jpg" alt="" /></a></li>
           <li><a href="#"><img src="style/images/art/f5.jpg" alt="" /></a></li>
           <li><a href="#"><img src="style/images/art/f6.jpg" alt="" /></a></li>
           <li><a href="#"><img src="style/images/art/f7.jpg" alt="" /></a></li>
           <li><a href="#"><img src="style/images/art/f8.jpg" alt="" /></a></li>
-          <li><a href="#"><img src="style/images/art/f9.jpg" alt="" /></a></li>
+          <li><a href="#"><img src="style/images/art/f9.jpg" alt="" /></a></li> -->
         </ul>
       </div>
       <div class="one-fourth">

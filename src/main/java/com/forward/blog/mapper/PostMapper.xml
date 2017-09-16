@@ -73,4 +73,11 @@
 		select * from t_post where pfine = 'checked' and drafts = 0
 	</select>
 	
+	<select id="selectAllPostList" resultType="Post">
+		select * from t_post
+	</select>
+	
+	<update id="setPostPalbumidByPostId" parameterType="Post">
+		update t_post set palbumid = #{palbumid},palbumurl = #{palbumurl} where pid = #{pid}
+	</update>	
 </mapper>

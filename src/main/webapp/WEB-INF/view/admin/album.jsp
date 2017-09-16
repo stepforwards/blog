@@ -72,25 +72,68 @@ $(document).ready(function()
   
   <!-- Begin Container -->
   <div id="container" class="opacity"> 
+  	 <form action="<c:url value="/admin/album/addAlbum.action"/>" enctype="multipart/form-data" method="post">
+    		<div style="margin: 0 auto;width: 400px;">
+  	 		上传图片：<input name="photo" style="margin-bottom: 10px;" class="button blue" type="file"><br>
+    			<input type="text" name="alname" style="width: 400px;" placeholder="图片标题">
+    			<br>
+    			<textarea rows="" cols="" name="aldesc" style="width: 398px;height:50px;resize: none;" placeholder="图片描述"></textarea>
+    			<br>
+    		</div>
+     </form>
+     
+  	 <form id="search" action="<c:url value="/admin/album/album.action"/>" method="post">
+    		<div style="margin: 0 auto;width: 400px;">
+  	 			<input name="alname" type="search" style="width: 353px;height: 24px;" value="${alname }" placeholder="搜索图片标题">
+  	 			<input name="prevOrNext" id="prevOrNext" type="hidden" value="">
+  	 			<input name="firstPage" value="true" type="hidden" id="firstPage">
+				<input type="submit" style="margin: 0;" value="搜索">
+    		</div>
+     </form>
+  	 <form action="<c:url value="/admin/album/setPostPalbumidByPostId.action"/>" method="post">
+    		<div style="margin: 0 auto;width: 400px;">
+    			<select name="pid" style="margin-top: 3px;width: 230px;height: 30px;">
+    					<option value="">设置博文封面</option>
+    				<c:forEach items="${postList }" var="post">
+	    				<option value="${post.pid }">${post.ptitle }</option>
+    				</c:forEach>
+    			</select>
+  	 			<input name="palbumid" type="text" style="width: 115px;height: 24px;" placeholder="请填写图片id">
+				<input type="submit"  value="添加">
+    		</div>
+     </form>
     <div id="footer">
-    	<form action="" >
-    		上传图片：<input style="margin-bottom: 10px;" class="button blue" type="file">
-    	</form>
       <div class="footer-top"></div>
     </div>
-     <h2>相册列表</h2>
+    <h2>相册列表</h2>
+    	
     <!-- Begin Latest Works -->
-   
-	    <div id="carousel-scroll"><a href="#" id="prev">上一页</a><a href="#" id="next">下一页</a></div>
-	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c1.jpg" alt="" /> </a> <a>删除</a> 
-	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c2.jpg" alt="" /> </a> <a>删除</a>
-	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c3.jpg" alt="" /> </a> <a>删除</a>
-	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c4.jpg" alt="" /> </a> <a>删除</a>
-	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c5.jpg" alt="" /> </a> <a>删除</a>
-	    <a href="#"> <span class="overlay details"></span><img style="display: inline-block;" src="style/images/art/c6.jpg" alt="" /> </a> <a>删除</a>
+	    <div id="carousel-scroll">
+	    <a  onclick="albumListSearchPaging('prev')" id="prev">上一页</a>
+	    <a  onclick="albumListSearchPaging('next')" id="next">下一页</a>
+	    </div>
+   		<c:forEach items="${albumList }" var="album">
+   			<div style="display: inline-block; margin-right: 14px;margin-top:10px; text-align: center;">
+   				<span>id:${album.aid}&nbsp;
+   					title:
+   					<c:if test="${!album.alname eq '' }">
+   						${album.alname }
+   					</c:if>
+   					<c:if test="${album.alname eq '' }">
+   						null
+   					</c:if>
+   				</span>
+   				<br>
+		    	<a href="/${album.alurl }"> 
+		    		<span class="overlay details"></span>
+		    		<img style="display: inline-block; width: 196px;height: auto;" src="/${album.alurl }" alt="${album.alname }" />
+		        </a>
+		        <a href="<c:url value="/admin/album/deleteAlbum.action"/>?aid=${album.aid}">x</a>
+		    </div>
+   		</c:forEach>
     <!-- End Latest Works -->
     <!-- End Latest Works -->
-	
+	<div class="hr1"></div>
   </div>
   <!-- End Container -->
   
@@ -101,5 +144,12 @@ $(document).ready(function()
 <!-- End Wrapper --> 
 
 <script type="text/javascript" src="style/js/scripts.js"></script>
+<script type="text/javascript">
+function albumListSearchPaging(page){
+	$("#prevOrNext").val(page);
+	$("#firstPage").val("false");
+	$("#search").submit();
+}
+</script>
 </body>
 </html>

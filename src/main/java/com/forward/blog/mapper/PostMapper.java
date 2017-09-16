@@ -25,5 +25,9 @@ public interface PostMapper {
 
 	List<Post> selectFinePostList();
 
+	List<Post> selectAllPostList();
+
+	void setPostPalbumidByPostId(Post post);
+
 
 }

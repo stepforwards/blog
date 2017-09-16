@@ -23,6 +23,10 @@ public interface PostService {
 
 	List<Post> selectFinePostList();
 
+	List<Post> selectAllPostList();
+
+	void updateSetPostPalbumidByPostId(Post post);
+
 
 	
 	
