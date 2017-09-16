@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="page" uri="http://forward.com/common/" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -140,7 +141,7 @@ $.fn.imagesLoaded = function(a) {
   
   <!-- Begin Container -->
   <div id="container" class="opacity">
-    <h2>时光相册</h2>
+    <h2>时光记录</h2>
     <p>
     	年难留，时易损。
     	让人回味，让人无奈。
@@ -156,21 +157,33 @@ $.fn.imagesLoaded = function(a) {
           <li>Filter:</li>
           <li><a class="all" href="#all">所有</a></li>
           <li><a class="cat1" href="#cat1">图片</a></li>
-          <li><a class="cat2" href="#cat2">文章</a></li>
+         <!--  <li><a class="cat2" href="#cat2">文章</a></li> -->
           <li><a class="cat3" href="#cat3">视频</a></li>
         </ul>
+        <page:page url="${pageContext.request.contextPath }/front/album/album.action"></page:page>
         <div class="clear"></div>
         <div class="items">
-        	<div id="carousel-scroll" style="position: relative; left: -50px;top: 15px;">
-	    		<a href="<c:url value="/front/album/album.action"/>?prevOrNext=prev" id="prev">上一页</a>
-	    		<a href="<c:url value="/front/album/album.action"/>?prevOrNext=next" id="next">下一页</a>
-	    	</div>
-        	<c:forEach items="${albumList }" var="album">
+        	<c:forEach items="${pages.rows }" var="album">
 	          <div class="box col5 cat1">
 	          	<a href="/${album.alurl }" rel="prettyPhoto" title="${album.aldesc }">
 	          	<span class="overlay zoom"></span>
 	          	<img src="/${album.alurl }" style="display: inline-block; width: 196px;height: auto;" alt="${album.alname }" /></a>
 	          </div>
+        	</c:forEach>
+        	<c:forEach items="${videoList }" var="video">
+			  <div class="box col5 cat3">
+			  	<a href="${video.vurl }" rel="prettyPhoto" title="${video.vname }">
+			  		<span class="overlay play"></span>
+			  		<c:choose>
+			  			<c:when test="${video.valbumurl eq '' }">
+					  		<img src="style/images/art/p14.jpg" alt="" />
+			  			</c:when>
+			  			<c:otherwise>
+					  		<img src="/${video.valbumurl }" alt="" />
+			  			</c:otherwise>
+			  		</c:choose>
+			  	</a>
+			  </div> 
         	</c:forEach>
           <!-- 
           <div class="box col5 cat2"><a href="portfolio-post.html"><span class="overlay details"></span><img src="style/images/art/p2.jpg" alt="" /></a></div>
@@ -185,7 +198,6 @@ $.fn.imagesLoaded = function(a) {
           <div class="box col5 cat2"><a href="portfolio-post.html"><span class="overlay details"></span><img src="style/images/art/p11.jpg" alt="" /></a></div>
           <div class="box col5 cat1"><a href="style/images/art/p12.jpg" rel="prettyPhoto" title="this is title"><span class="overlay zoom"></span><img src="style/images/art/p12.jpg" alt="" /></a></div>
 		  <div class="box col5 cat3"><a href="http://vimeo.com/25518056" rel="prettyPhoto" title="this is title"><span class="overlay play"></span><img src="style/images/art/p13.jpg" alt="" /></a></div>
-		  <div class="box col5 cat3"><a href="http://vimeo.com/6757600" rel="prettyPhoto" title="this is title"><span class="overlay play"></span><img src="style/images/art/p14.jpg" alt="" /></a></div> 
 		  -->
         </div>
         <!-- .wrap --> 

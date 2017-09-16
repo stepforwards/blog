@@ -86,11 +86,11 @@ $(document).ready(function()
         	<span style="float: right;">&nbsp;&nbsp;</span>
 	    </form>
     	<c:forEach items="${categoriesList }" var="categories">
-	        <div class="note-box" style="">
+	        <div class="note-box">
 		        <form id="updateCategories${categories.cid}" action="<c:url value="/admin/categories/updateCategories.action"/>" method="post">
-		        	<input name="cname" value="${categories.cname }" placeholder="分类名称">
-		        	  <!-- <span>3</span> -->&nbsp;*&nbsp;&nbsp;
-		        	<input name="cdesc" value="${categories.cdesc }" placeholder="分类描述" style="width: 500px;">
+		        	<input name="cname" class="form-control" style="width: 250px;height: 30px;display: inline-block;" value="${categories.cname }" placeholder="分类名称">
+		        	  <!-- <span>3</span> -->
+		        	<input name="cdesc" class="form-control" style="width: 400px;height: 30px;display: inline-block;margin-left: 30px;" value="${categories.cdesc }" placeholder="分类描述" style="width: 500px;">
 		        	<input type="hidden" name="cid" value="${categories.cid}">
 		        	<a href="<c:url value="/admin/categories/deleteCategories.action"/>?cid=${categories.cid}" style="float: right;margin-right: 9px;">删除</a>
 		        	<span style="float: right;">&nbsp;&nbsp;</span>

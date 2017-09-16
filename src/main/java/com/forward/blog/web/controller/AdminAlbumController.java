@@ -4,7 +4,6 @@ import java.io.File;
 import java.sql.Date;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.forward.blog.model.Album;
-import com.forward.blog.model.Paging;
+import com.forward.blog.model.KVO;
 import com.forward.blog.model.Post;
+import com.forward.blog.model.Video;
 import com.forward.blog.service.AlbumService;
 import com.forward.blog.service.PostService;
+import com.forward.blog.utils.Page;
 
 @Controller
 @RequestMapping("/admin/album")
@@ -31,18 +32,13 @@ public class AdminAlbumController {
 	
 	
 	@RequestMapping("/album.action")
-	public String inAlbum(Model m,@RequestParam(defaultValue="prev")String prevOrNext,@RequestParam(defaultValue="")String alname,@RequestParam(defaultValue="true")String firstPage,HttpSession session){
-		Paging paging = (Paging) session.getAttribute("paging");
-		paging = paging == null ? new Paging() : paging;
-		paging.setPrevOrNext(prevOrNext);
-		paging.setPageSize(16);
-		if(firstPage.equals("true"))
-			paging.setCurrentPage(1);
-		paging.setAlname(alname);
-		m.addAttribute("albumList", albumService.selectAlbumListPaging(paging));
-		m.addAttribute("alname", alname);
+	public String inAlbum(Model m,KVO kvo,@RequestParam(defaultValue="1")int page){
+		@SuppressWarnings("rawtypes")
+		Page pages = albumService.loadPage(kvo,page);
+		m.addAttribute("alname", kvo.getAlname());
 		m.addAttribute("postList", postService.selectAllPostList());
-		session.getAttribute("paging");
+		m.addAttribute("videoList",albumService.selectAllVideoList());
+		m.addAttribute("pages", pages);
 		return "/admin/album";
 	}
 	
@@ -74,8 +70,26 @@ public class AdminAlbumController {
 		return "redirect:/admin/album/album.action";
 	}
 	
+	/*
+	 * Video
+	 * */
 	@RequestMapping("/video.action")
-	public String inVideo(){
+	public String inVideo(Model m,KVO kvo,@RequestParam(defaultValue="1")int page){
+		m.addAttribute("pages",albumService.loadPageVideo(kvo,page));
 		return "/admin/albumVideo";
+	}
+	
+	@RequestMapping("/addVideo.action")
+	public String addVideo(Video video){
+		video.setVinserttime(new Date(System.currentTimeMillis()));
+		albumService.insertVideo(video);
+		return "redirect:/admin/album/video.action";
+	}
+	
+	@RequestMapping("/setVideoValbumidByVideoId.action")
+	public String updateSetVideoValbumidByVideoId(Video video){
+		video.setValbumurl(albumService.selectAlbumById(video.getValbumid()).getAlurl());
+		albumService.updateSetVideoValbumidByVideoId(video);
+		return "redirect:/admin/album/album.action";
 	}
 }
