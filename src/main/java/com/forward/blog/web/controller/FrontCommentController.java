@@ -39,4 +39,15 @@ public class FrontCommentController {
 		commentService.addComment(comment);
 		return "redirect:/front/blog/post.action?pid="+comment.getCopostid();
 	}
+	
+	@RequestMapping("/doLiuYan.action")
+	public String doLiuYan(Comment comment){
+		comment.setCoinserttime(new Date(System.currentTimeMillis()));
+		commentService.addComment(comment);
+		return "redirect:/front/comment/LiuYanResult.action";
+	}
+	@RequestMapping("/LiuYanResult.action")
+	public String LiuYanResult(){
+		return "/front/message";
+	}
 }

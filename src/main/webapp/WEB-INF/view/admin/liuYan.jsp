@@ -68,7 +68,7 @@ jQuery(document).ready(function($){
 	          <td>${comment.coemail }</td>
 	          <td>${comment.cocontent }</td>
 	          <td>${comment.coinserttime }</td>
-	          <td><a href="<c:url value="/admin/comment/deleteCommentById.action"/>?coid=${comment.coid }">X</a></td>
+	          <td><a href="<c:url value="/admin/comment/deleteCommentById.action"/>?coid=${comment.coid }&isLiuYan=true">X</a></td>
 	        </tr>
         </c:forEach>
       </table>

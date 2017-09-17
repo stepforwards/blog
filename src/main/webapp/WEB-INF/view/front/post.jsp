@@ -67,7 +67,7 @@ jQuery(document).ready(function($){
             <!-- Begin Title -->
             <div class="post-title">
               <h1>${post.ptitle }</h1>
-              <div class="post-meta"> <span class="comments"><a href="#">13 Comments</a></span> <span class="categories"><a href="#">${post.categoriesname }</a></span> </div>
+              <div class="post-meta"> <span class="comments"><a href="#">${commentListSize } 条评论</a></span> <span class="categories"><a href="#">${post.categoriesname }</a></span> </div>
             </div>
             <!-- End Title --> 
           </div>

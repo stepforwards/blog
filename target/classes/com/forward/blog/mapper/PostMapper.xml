@@ -32,6 +32,7 @@
 		<if test="tid != null and tid != '' ">
 			AND tid = #{tid}
 		</if>
+		ORDER BY t_post.pid DESC
 	</select>
 	
 	<select id="insertPost" parameterType="Post">
@@ -62,7 +63,7 @@
 	</select>
 	
 	<select id="selectlatestPost" resultType="Post">
-		select * from t_post where drafts = 0 ORDER BY pid DESC LIMIT 0,5 
+		select * from t_post where drafts = 0 ORDER BY pid DESC LIMIT 0,4 
 	</select>
 	
 	<select id="setFinePostById" parameterType="Post" >

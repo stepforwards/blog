@@ -57,28 +57,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</p>
       </div>
       <div class="one-fourth last">
-        <h3>联系我</h3>
+        <h3>给我留言</h3>
         <!-- Form -->
         <div class="form-container">
-          <form class="forms" action="contact/form-handler.php" method="post">
+          <form class="forms" id="liuYan" action="<c:url value="/front/comment/doLiuYan.action"/>" method="post">
             <fieldset>
               <ol>
                 <li class="form-row text-input-row">
                   <label>名字*</label>
-                  <input type="text" name="name" value="" class="text-input required" title="" />
+                  <input type="text" name="coname" id="coname" value="" class="text-input required" title="" />
                 </li>
                 <li class="form-row text-input-row">
                   <label>邮箱*</label>
-                  <input type="text" name="email" value="" class="text-input required email" title="" />
+                  <input type="email" name="coemail" id="coemail" value="" class="text-input required email" title="" />
                 </li>
                 <li class="form-row text-area-row">
-                  <textarea name="message" class="text-area required"></textarea>
+                  <textarea name="cocontent" id="cocontent" class="text-area required"></textarea>
                 </li>
                 <li class="form-row hidden-row">
                   <input type="hidden" name="hidden" value="" />
                 </li>
                 <li class="button-row">
-                  <input type="submit" value="提交" name="submit" class="btn-submit" />
+                  <input type="button" value="提交" onclick="checkLiuYan()" name="submit" class="btn-submit" />
                 </li>
               </ol>
               <input type="hidden" name="v_error" id="v-error" value="Required" />
@@ -99,4 +99,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- End Wrapper --> 
 
 </body>
+<script type="text/javascript">
+	function checkLiuYan() {
+		if($("#coname").val() == "" || $("#coemail").val() == "" || $("#cocontent").val() == ""){
+			alert("姓名，邮箱，内容均不能为空！")
+		}else{
+			$("#liuYan").submit();
+		}
+	}
+</script>
 </html>

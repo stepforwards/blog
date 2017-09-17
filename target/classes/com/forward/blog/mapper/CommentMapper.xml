@@ -40,7 +40,15 @@
 	</select>
 	
 	<insert id="addComment" parameterType="Comment">
-		insert into t_comment(coname,coemail,cocontent,copostid,coreplyid,coinserttime) values(#{coname},#{coemail},#{cocontent},#{copostid},#{coreplyid},#{coinserttime})
+		insert into t_comment(coname,coemail,cocontent,
+		<if test="copostid != null and copostid != ''">
+			copostid,coreplyid,
+		</if>
+		coinserttime) values(#{coname},#{coemail},#{cocontent},
+		<if test="copostid != null and copostid != ''">
+			#{copostid},#{coreplyid},
+		</if>
+		#{coinserttime})
 	</insert>
 	
 	<delete id="deleteCommentById" parameterType="Comment">

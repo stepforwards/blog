@@ -29,8 +29,11 @@ public class AdminCommentController {
 	}
 	
 	@RequestMapping("/deleteCommentById.action")
-	public String deleteCommentById(Comment comment){
+	public String deleteCommentById(Comment comment,boolean isLiuYan){
 		commentService.deleteCommentById(comment);
+		if(isLiuYan){
+			return "redirect:/admin/comment/liuYan.action";
+		}
 		return "redirect:/admin/comment/commentList.action";
 	}
 	
