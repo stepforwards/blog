@@ -160,9 +160,11 @@ $.fn.imagesLoaded = function(a) {
          <!--  <li><a class="cat2" href="#cat2">文章</a></li> -->
           <li><a class="cat3" href="#cat3">视频</a></li>
         </ul>
-        <page:page url="${pageContext.request.contextPath }/front/album/album.action"></page:page>
+        <div style="margin-top: 35px;">
+	        <page:page url="${pageContext.request.contextPath }/front/album/album.action"></page:page>
+        </div>
         <div class="clear"></div>
-        <div class="items">
+        <div class="items" style="margin-top: 5px;">
         	<c:forEach items="${pages.rows }" var="album">
 	          <div class="box col5 cat1">
 	          	<a href="/${album.alurl }" rel="prettyPhoto" title="${album.aldesc }">

@@ -99,7 +99,6 @@ $(document).ready(function()
     			</select>
   	 			<input name="palbumid" type="text" style="width: 115px;height: 24px;" placeholder="请填写图片id">
 				<input type="button" onclick="setPostPalbumidByPostId()"  value="添加">
-    			
     		</div>
      </form>
   	 <form id="setVideoValbumidByPostId" action="<c:url value="/admin/album/setVideoValbumidByVideoId.action"/>" style="width: 400px;"  method="post">
@@ -118,7 +117,7 @@ $(document).ready(function()
     </div>
    			
     			
-    <div id="footer">
+    <div id="footer" style="padding-top: 20px;padding-bottom: 5px;">
       <div class="footer-top"></div>
 		  <page:page url="${pageContext.request.contextPath }/admin/album/album.action"></page:page>
     </div>
