@@ -5,7 +5,7 @@
 	<select id="selectCountAllComment" parameterType="KVO" resultType="Integer">
 		select count(*) from t_comment where copostid is not null
 		<if test="copostid != null and copostid != ''">
-			and co1.copostid = #{copostid}
+			and copostid = #{copostid}
 		</if>
 	</select>
 	
