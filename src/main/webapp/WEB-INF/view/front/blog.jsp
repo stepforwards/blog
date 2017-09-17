@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="page" uri="http://forward.com/common/" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -55,7 +56,7 @@ jQuery(document).ready(function($){
       
       <!-- Begin Posts -->
       <div class="content"> 
-        <c:forEach items="${postList }" var="post" varStatus="status">
+        <c:forEach items="${pages.rows }" var="post" varStatus="status">
         
 	        <!-- Begin Post -->
 	        <div class="post"> 
@@ -104,14 +105,7 @@ jQuery(document).ready(function($){
         </c:forEach>
         
         <!-- Begin Page Navi -->
-    			<!-- <div class="page-navi">
-    				<p>Page 1 of 3</p>
-    				<ul>
-    					<li><a href="#" class="current">1</a></li>
-    					<li><a href="#">2</a></li>
-    					<li><a href="#">3</a></li>
-    				</ul>
-    			</div> -->
+    			<page:page url="${pageContext.request.contextPath }/front/blog/posts.action"></page:page>
         <!-- End Page Navi -->
         
       </div>

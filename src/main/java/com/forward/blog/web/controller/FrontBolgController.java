@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.forward.blog.model.Comment;
 import com.forward.blog.model.KVO;
@@ -33,8 +34,8 @@ public class FrontBolgController {
 	CommentService commentService;
 	
 	@RequestMapping("/posts.action")
-	public String inBlog(Model m,KVO kvo){
-		m.addAttribute("postList", postService.selectPostList(kvo));
+	public String inBlog(Model m,KVO kvo,@RequestParam(defaultValue="1")int page){
+		m.addAttribute("pages", postService.loadPage(kvo,page));
 		m.addAttribute("categoriesList", categoriesService.selectCategoriesList());
 		m.addAttribute("tagList", tagService.selectTagList());
 		m.addAttribute("ptitle", kvo.getPtitle());
