@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="page" uri="http://forward.com/common/" %>
 
 <%
 String path = request.getContextPath();
@@ -74,8 +75,9 @@ $(document).ready(function()
   <!-- Begin Container -->
   <div id="container" class="opacity"> 
     <a href="<c:url value="/admin/post/newPost.action"/>" class="button blue">新建博文</a>
-    <div id="footer">
+    <div id="footer" style="padding-top: 20px;padding-bottom: 5px;">
       <div class="footer-top"></div>
+       <page:page url="${pageContext.request.contextPath }/admin/post/postList.action"></page:page>
     </div>
     <!-- Begin Latest Works -->
     <h2>文章列表</h2>
@@ -118,7 +120,7 @@ $(document).ready(function()
           <th><h4>编辑</h4></th>
           <th><h4>删除</h4></th>
         </tr>
-        <c:forEach items="${postList }" var="post" varStatus="status">
+        <c:forEach items="${pages.rows }" var="post" varStatus="status">
 	        <tr>
 	          <td>${status.count }</td>
 	          <td>${post.ptitle }</td>

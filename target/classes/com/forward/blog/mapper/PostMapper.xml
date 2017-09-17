@@ -80,4 +80,5 @@
 	<update id="setPostPalbumidByPostId" parameterType="Post">
 		update t_post set palbumid = #{palbumid},palbumurl = #{palbumurl} where pid = #{pid}
 	</update>	
+	
 </mapper>

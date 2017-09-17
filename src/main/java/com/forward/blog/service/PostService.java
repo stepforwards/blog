@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.forward.blog.model.KVO;
 import com.forward.blog.model.Post;
+import com.forward.blog.utils.Page;
 
 public interface PostService {
 
@@ -26,6 +27,10 @@ public interface PostService {
 	List<Post> selectAllPostList();
 
 	void updateSetPostPalbumidByPostId(Post post);
+
+	@SuppressWarnings("rawtypes")
+	Page loadPage(KVO kvo, int page);
+
 
 
 	

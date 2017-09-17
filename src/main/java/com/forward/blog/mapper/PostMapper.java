@@ -29,5 +29,4 @@ public interface PostMapper {
 
 	void setPostPalbumidByPostId(Post post);
 
-
 }

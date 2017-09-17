@@ -51,7 +51,7 @@ public class NavigationTag extends TagSupport {
                 preUrl = append(preUrl, "rows", page.getSize());
                 writer.print("<li><a href=\"" + preUrl + "\">prev</a></li>");
             } else {
-            	writer.print("<li ><a></a></li>");
+            	writer.print("<li ><a style=\"color:red;\">prev</a></li>");
             }
             //显示当前页码的前2页码和后两页码 
             //若1 则 1 2 3 4 5, 若2 则 1 2 3 4 5, 若3 则1 2 3 4 5,
@@ -72,7 +72,7 @@ public class NavigationTag extends TagSupport {
                 nextUrl = append(nextUrl, "rows", page.getSize());
                 writer.print("<li><a href=\"" + nextUrl + "\">next</a></li>");
             } else {
-            	writer.print("<li ><a></a></li>");
+            	writer.print("<li ><a style=\"color:red;\">next</a></li>");
             }
             writer.print("</div>");
         } catch (IOException e) {

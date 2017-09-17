@@ -84,7 +84,6 @@ jQuery(document).ready(function($){
         
         <!-- Begin Comments -->
         
-        <h3>5 Responses to "Proin euismod dui rutrum risus"</h3>
         
         <!-- Begin Comments -->
         <jsp:include page="/WEB-INF/view/include/comments.jsp"></jsp:include>

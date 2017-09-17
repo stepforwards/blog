@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.CommentMapper">
+	
+	<select id="selectCountAllComment" parameterType="KVO" resultType="Integer">
+		select count(*) from t_comment where copostid is not null
+		<if test="copostid != null and copostid != ''">
+			and co1.copostid = #{copostid}
+		</if>
+	</select>
+	
+	<select id="selectCommentListPaging" parameterType="KVO" resultType="Comment">
+		SELECT
+		*, ptitle,
+		co2.coname coreplyname
+		FROM
+		t_comment co1
+		LEFT JOIN t_post ON co1.copostid = pid
+		LEFT JOIN t_comment co2 ON co1.coreplyid = co2.coid
+		WHERE
+		co1.copostid IS NOT NULL
+		<if test="copostid != null and copostid != ''">
+			and co1.copostid = #{copostid}
+		</if>
+		limit #{currentStrip},#{pageSize}
+	</select>
+	
+	<select id="selectCommentByPostId" parameterType="Post" resultType="Comment">
+		SELECT
+		*, ptitle,
+		co2.coname coreplyname
+		FROM
+		t_comment co1
+		LEFT JOIN t_post ON co1.copostid = pid
+		LEFT JOIN t_comment co2 ON co1.coreplyid = co2.coid
+		WHERE
+		co1.copostid IS NOT NULL
+		and co1.copostid = #{pid}
+		ORDER BY co1.coid DESC
+	</select>
+	
+	<insert id="addComment" parameterType="Comment">
+		insert into t_comment(coname,coemail,cocontent,copostid,coreplyid,coinserttime) values(#{coname},#{coemail},#{cocontent},#{copostid},#{coreplyid},#{coinserttime})
+	</insert>
+	
+	<delete id="deleteCommentById" parameterType="Comment">
+		delete from t_comment where coid = #{coid}
+	</delete>
+	
+	<select id="selectCountAllCommentOfCopostidIsNull" parameterType="KVO" resultType="Integer">
+		select count(*) from t_comment where copostid is null
+	</select>
+	
+	<select id="selectCommentListOfCopostidIsNullPaging" parameterType="KVO" resultType="Comment">
+		SELECT
+		*, ptitle,
+		co2.coname coreplyname
+		FROM
+		t_comment co1
+		LEFT JOIN t_post ON co1.copostid = pid
+		LEFT JOIN t_comment co2 ON co1.coreplyid = co2.coid
+		WHERE
+		co1.copostid IS NULL
+		limit #{currentStrip},#{pageSize}
+	</select>
+	
+</mapper>

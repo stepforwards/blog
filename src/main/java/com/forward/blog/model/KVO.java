@@ -4,6 +4,9 @@ public class KVO {
 	
 	private String ptitle = "";
 	private String alname = "";
+	private int copostid;
+	private int tid;
+	private int drafts = 0;
 	private int pcategoriesid;
 	private int currentStrip;
 	private int pageSize;
@@ -25,9 +28,15 @@ public class KVO {
 	public void setCurrentStrip(int currentStrip) {
 		this.currentStrip = currentStrip;
 	}
-	private int tid;
-	private int drafts = 0;
 	
+	
+	public int getCopostid() {
+		return copostid;
+	}
+	public void setCopostid(int copostid) {
+		
+		this.copostid = copostid;
+	}
 	public int getDrafts() {
 		return drafts;
 	}
@@ -54,8 +63,9 @@ public class KVO {
 	}
 	@Override
 	public String toString() {
-		return "KVO [ptitle=" + ptitle + ", alname=" + alname + ", pcategoriesid=" + pcategoriesid + ", currentStrip="
-				+ currentStrip + ", pageSize=" + pageSize + ", tid=" + tid + ", drafts=" + drafts + "]";
+		return "KVO [ptitle=" + ptitle + ", alname=" + alname + ", copostid=" + copostid + ", tid=" + tid + ", drafts="
+				+ drafts + ", pcategoriesid=" + pcategoriesid + ", currentStrip=" + currentStrip + ", pageSize="
+				+ pageSize + "]";
 	}
 	
 	

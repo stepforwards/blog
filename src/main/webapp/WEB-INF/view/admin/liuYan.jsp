@@ -46,20 +46,9 @@ jQuery(document).ready(function($){
   
   <!-- Begin Container -->
   <div id="container" class="opacity">
-  	<form id="selectCommentByPostId" action="<c:url value="/admin/comment/commentList.action"/>" style="width: 400px;"  method="post">
-    		<div style="width: 400px;">
-    			<select id="pid" name="copostid" onchange="selectCommentByPostId()" style="margin-top: 3px;width: 230px;height: 30px;">
-    					<option value="0">全部博文评论</option>
-    				<c:forEach items="${postList }" var="post">
-	    				<option value="${post.pid }" ${KVO.copostid eq post.pid ? "selected" : "" }>关于博文${post.ptitle }的评论</option>
-    				</c:forEach>
-    			</select>
-    		</div>
-     </form>
-  
   	<div id="footer" style="padding-top: 20px;padding-bottom: 5px;">
       <div class="footer-top"></div>
-       <page:page url="${pageContext.request.contextPath }/admin/comment/commentList.action"></page:page>
+       <page:page url="${pageContext.request.contextPath }/admin/comment/liuYan.action"></page:page>
     </div>
     <div class="full-width">
     
@@ -69,8 +58,6 @@ jQuery(document).ready(function($){
           <th><h4>昵称</h4></th>
           <th><h4>Email</h4></th>
           <th><h4>内容</h4></th>
-          <th><h4>回复人</h4></th>
-          <th><h4>归属博文</h4></th>
           <th><h4>添加时间</h4></th>
           <th><h4>删除</h4></th>
         </tr>
@@ -80,8 +67,6 @@ jQuery(document).ready(function($){
 	          <td>${comment.coname }</td>
 	          <td>${comment.coemail }</td>
 	          <td>${comment.cocontent }</td>
-	          <td>${comment.coreplyname }</td>
-	          <td>${comment.ptitle }</td>
 	          <td>${comment.coinserttime }</td>
 	          <td><a href="<c:url value="/admin/comment/deleteCommentById.action"/>?coid=${comment.coid }">X</a></td>
 	        </tr>

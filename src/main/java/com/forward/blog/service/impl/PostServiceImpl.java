@@ -10,6 +10,7 @@ import com.forward.blog.mapper.PostMapper;
 import com.forward.blog.model.KVO;
 import com.forward.blog.model.Post;
 import com.forward.blog.service.PostService;
+import com.forward.blog.utils.Page;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -78,7 +79,18 @@ public class PostServiceImpl implements PostService {
 		postMapper.setPostPalbumidByPostId(post);
 	}
 
-
-	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Page loadPage(KVO kvo, int currentPage) {
+		List<Post> postList = postMapper.selectPostList(kvo);
+		Page<Post> page = new Page<>();
+		kvo.setPageSize(10);
+		kvo.setCurrentStrip((currentPage-1)*10);
+		page.setTotal(postList.size());
+		page.setRows(postList.subList(kvo.getCurrentStrip(), kvo.getPageSize() > postList.size() ? postList.size() : kvo.getPageSize() ));
+		page.setSize(10);
+		page.setPage(currentPage);
+		return page;
+	}
 
 }

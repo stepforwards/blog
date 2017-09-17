@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.forward.blog.model.KVO;
 import com.forward.blog.model.MySetTpcontact;
@@ -28,8 +29,8 @@ public class AdminPostController {
 	TagService tagService;
 	
 	@RequestMapping("/postList.action")
-	public String inPostList(Model m,KVO kvo){
-		m.addAttribute("postList", postService.selectPostList(kvo));
+	public String inPostList(Model m,KVO kvo,@RequestParam(defaultValue="1")int page){
+		m.addAttribute("pages", postService.loadPage(kvo,page));
 		m.addAttribute("categoriesList", categoriesService.selectCategoriesList());
 		m.addAttribute("tagList", tagService.selectTagList());
 		m.addAttribute("kvo", kvo);

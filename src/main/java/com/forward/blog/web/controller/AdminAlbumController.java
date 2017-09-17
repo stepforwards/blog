@@ -19,7 +19,6 @@ import com.forward.blog.model.Post;
 import com.forward.blog.model.Video;
 import com.forward.blog.service.AlbumService;
 import com.forward.blog.service.PostService;
-import com.forward.blog.utils.Page;
 
 @Controller
 @RequestMapping("/admin/album")
@@ -33,12 +32,10 @@ public class AdminAlbumController {
 	
 	@RequestMapping("/album.action")
 	public String inAlbum(Model m,KVO kvo,@RequestParam(defaultValue="1")int page){
-		@SuppressWarnings("rawtypes")
-		Page pages = albumService.loadPage(kvo,page);
 		m.addAttribute("alname", kvo.getAlname());
 		m.addAttribute("postList", postService.selectAllPostList());
 		m.addAttribute("videoList",albumService.selectAllVideoList());
-		m.addAttribute("pages", pages);
+		m.addAttribute("pages", albumService.loadPage(kvo,page));
 		return "/admin/album";
 	}
 	

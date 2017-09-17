@@ -34,7 +34,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	  <li><a href="<c:url value="/admin/album/video.action"/>">视频管理</a></li>
         </ul>
       </li>
-      <li><a ${param.fromJsp eq "comment" ? "class='active'" : "" } href="<c:url value="/admin/comment/commentList.action"/>">留言管理</a></li>
+      <li><a ${param.fromJsp eq "comment" ? "class='active'" : "" } href="<c:url value="/admin/comment/commentList.action"/>">评论管理</a>
+      	<ul>
+      	  <li><a href="<c:url value="/admin/comment/commentList.action"/>">评论管理</a></li>
+      	  <li><a href="<c:url value="/admin/comment/liuYan.action"/>">留言管理</a></li>
+        </ul>
+      </li>
       <li><a ${param.fromJsp eq "about" ? "class='active'" : "" } href="<c:url value="/admin/about/about.action"/>">关于信息</a></li>
       <li><a href="<c:url value="/admin/user/exit.action"/>">退出</a></li>
     </ul>
