@@ -45,8 +45,8 @@ jQuery(document).ready(function($){
   <!-- End Menu --> 
   
   <!-- Begin Container -->
-  <form action="<c:url value="/admin/user/updateUserInfo.action"/>" method="post">
   <div id="container" class="opacity">
+  <form action="<c:url value="/admin/user/updateUserInfo.action"/>" method="post">
     <div class="content">
       <h2>关于我</h2>
       <p><textarea rows="10" cols="10" style="width:100%;resize: none;font-size: 16px;" name="uabout">${user.uabout }</textarea></p>
@@ -67,18 +67,18 @@ jQuery(document).ready(function($){
           <br>
           <span class="lite1">传真：</span> <input type="tel" value="${user.ufax }" name="ufax"><br>
           <span class="lite1">手机：</span> <input type="tel" value="${user.utel }" name="utel"><br>
-          <span class="lite1">邮箱：</span> <input type="email" value="${user.uemail }" name="uemail"></p>
+          <span class="lite1">邮箱：</span> <input type="email" value="${user.uemail }" readonly="readonly" name="uemail"></p>
       </div>
       <div class="sidebar-box">
         <h4>我的位置</h4>
         <input type="text" style="width: 100%;margin-bottom: 10px;" value="${user.ulocation }" name="ulocation">
         <iframe width="265" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://f.amap.com/3acra_07E2AXA"></iframe>
       </div>
+    	<a href="<c:url value="/admin/user/updatePassword.action"/>">修改密码</a>
     </div>
-    
   <!-- End Container -->
-  </div>
   </form>
+  </div>
   <jsp:include page="/WEB-INF/view/include/copyright.jsp"></jsp:include>
 </div>
 <!-- End Wrapper --> 

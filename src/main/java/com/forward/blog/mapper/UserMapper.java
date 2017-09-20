@@ -8,16 +8,20 @@ public interface UserMapper {
 
 	User checkEmail(User user);
 
-	void updataCaptcha(User user);
+	void updateCaptcha(User user);
 
 	User checkEmailAndCaptcha(User user);
-
-	void updataPassword(User user);
 
 	void resetPassword(User user);
 
 	void updateUserInfo(User user);
 
 	User selectUser(User user);
+
+	User checkPassword(User user);
+
+	void updatePassword(User user);
+
+	User selectUserInfo();
 
 }

@@ -11,13 +11,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>重置密码</title>
+<title>修改密码</title>
 
 <link rel="stylesheet" type="text/css" href="style/login_files/style.css">
 <link rel="stylesheet" type="text/css" href="style/login_files/animate.css">
 
 <script type="text/javascript" src="style/login_files/login.js"></script>
 <script type="text/javascript" src="style/login_files/jquery.js"></script>	  
+<script type="text/javascript" src="style/login_files/jquery.validate.min.js"></script>
+<script type="text/javascript" src="style/login_files/messages_zh.min.js"></script>
 	  
 <style id="style-1-cropbar-clipper">
 .en-markup-crop-options {
@@ -73,20 +75,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   snow();
 </script><canvas id="christmasCanvas" style="top: 0px; left: 0px; z-index: 5000; position: fixed; pointer-events: none;"></canvas>
 
-<h2 align="center">重置密码</h2>
+<h2 align="center">修改密码</h2>
+		<div style="text-align: center;">
+			<span id="message" style="color:red;">${message }</span>
+		</div>
 
-<div class="login_frame"></div>
-
-<div class="LoginWindow">
+<div class="LoginWindow" style="width: 500px;">
 	<div>
-		<form action="<c:url value="/admin/user/resetPassword.action"/>" method="post">
-		<div class="login">
-					<input type="hidden" name="uemail" value="${user.u_email }">
-					<input type="hidden" name="ucaptcha" value="${user.u_captcha }">
-				<p><input id="password" name="upassword" placeholder="新密码" type="password"></p>
-				<p><input id="finalPWD" name="urpassword" placeholder="确认密码" type="password"></p>
-				<span style="color:red;">${message }</span>
-			<p class="login-submit"><button type="submit" class="login-button" id="submit">提交</button></p>
+		<form id="updatePassword" action="<c:url value="/admin/user/updatePassword.action"/>" method="post">
+		<div class="login" style="width: 500px;">
+					<input type="hidden" name="uemail" value="${user.uemail }">
+				<p><input id="password"  name="oldUpassword" placeholder="旧密码" type="password"></p>
+				<p><input id="newUpassword"  name="newUpassword" placeholder="新密码" type="password"></p>
+				<p><input id="reUpassword"  name="reUpassword" placeholder="确认密码" type="password"></p>
+			<p class="login-submit" style=""><button type="submit" class="login-button" id="submit" >提交</button></p>
 		</div>
 		</form>
 	</div>
@@ -94,4 +96,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 <div id="timeArea"><script type="text/javascript">LoadBlogParts();</script><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" id="honehoneclock" height="70" width="160" align="middle"><param name="allowScriptAccess" value="always"><param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><param name="wmode" value="transparent"><embed wmode="transparent" src="login_files/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" name="honehoneclock" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" height="70" width="160" align="middle"></object></div>
 
-</body></html>
+</body>
+<script type="text/javascript">
+$(function(){
+	$("#updatePassword").validate({
+		rules: {
+			oldUpassword: {
+				required: true
+			},
+			newUpassword: {
+				required: true
+			},
+			reUpassword: {
+				required: true,
+				equalTo: "input[name=newUpassword]"
+			}
+		},
+		messages: {
+			oldUpassword: {
+				required: "旧密码不能为空 "
+			},
+			newUpassword: {
+				required: "新密码不能为空 "
+			},
+			reUpassword: {
+				required: "确认密码不能为空 ",
+				equalTo: "两次密码不一致 "
+			}
+		}
+	});
+});
+
+</script>
+</html>

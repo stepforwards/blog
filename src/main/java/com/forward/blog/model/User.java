@@ -15,12 +15,29 @@ public class User {
 	private String ulocation;
 	private String uabout;
 	private String uaddr;
+	private String oldUpassword;
+	private String newUpassword;
 	
 	
 	
 	
 	
-	
+	public String getOldUpassword() {
+		return oldUpassword;
+	}
+
+	public void setOldUpassword(String oldUpassword) {
+		this.oldUpassword = oldUpassword;
+	}
+
+	public String getNewUpassword() {
+		return newUpassword;
+	}
+
+	public void setNewUpassword(String newUpassword) {
+		this.newUpassword = newUpassword;
+	}
+
 	public String getUaddr() {
 		return uaddr;
 	}
@@ -117,7 +134,8 @@ public class User {
 	public String toString() {
 		return "User [uid=" + uid + ", uname=" + uname + ", upassword=" + upassword + ", uemail=" + uemail
 				+ ", ucaptcha=" + ucaptcha + ", uhobby=" + uhobby + ", ufax=" + ufax + ", utel=" + utel + ", ulocation="
-				+ ulocation + "]";
+				+ ulocation + ", uabout=" + uabout + ", uaddr=" + uaddr + ", oldUpassword=" + oldUpassword
+				+ ", newUpassword=" + newUpassword + "]";
 	}
 	
 	

@@ -75,39 +75,30 @@ $(document).ready(function()
     
     <!-- Begin Showcase -->
     <div id="showcase" class="showcase"> 
-      <!-- Each child div in #showcase represents a slide -->
-      <div class="showcase-slide"> 
-        <!-- Put the slide content in a div with the class .showcase-content. -->
-        <div class="showcase-content"> <img src="style/images/art/s1.jpg" alt="1" /> </div>
-      </div>
-      
-      <!-- Each child div in #showcase represents a slide -->
-      <div class="showcase-slide"> 
-        <!-- Put the slide content in a div with the class .showcase-content. -->
-        <div class="showcase-content"> <img src="style/images/art/s2.jpg" alt="2" /> </div>
-        <div class="showcase-caption">
-				生活是如此的美好！
-		</div>
-      </div>
+      <c:forEach items="${albumSharingList }" var="album">
+	      <!-- Each child div in #showcase represents a slide -->
+	      <div class="showcase-slide"> 
+	        <!-- Put the slide content in a div with the class .showcase-content. -->
+	        <div class="showcase-content"> <img src="/${album.alurl }" alt="${album.alname }" style="width: 100%;height: auto;" /> </div>
+	        <div class="showcase-caption">
+					${album.aldesc }
+			</div>
+	      </div>
+      </c:forEach>
       
       <div class="showcase-slide"> 
-        <!-- Put the slide content in a div with the class .showcase-content. -->
-        <div class="showcase-content"> <iframe src="http://www.baidu.com" width="900" height="400" frameborder="0"></iframe> </div>
+        Put the slide content in a div with the class .showcase-content.
+        <div class="showcase-content"> <iframe src="http://cn.bing.com/?mkt=zh-CN" style="width: 100%;" width="900" height="400" frameborder="0"></iframe> </div>
       </div>
       
-      <!-- Each child div in #showcase represents a slide -->
-      <div class="showcase-slide"> 
-        <!-- Put the slide content in a div with the class .showcase-content. -->
-        <div class="showcase-content"> <img src="style/images/art/s3.jpg" alt="3" /> </div>
-      </div>
-      <!-- Each child div in #showcase represents a slide -->
-      <div class="showcase-slide"> 
-        <!-- Put the slide content in a div with the class .showcase-content. -->
-        <div class="showcase-content"> <img src="style/images/art/s4.jpg" alt="4" /> </div>
-         <div class="showcase-caption">
-				生活是如此的美好！
-		</div>
-      </div>
+     
+   		<!-- Each child div in #showcase represents a slide -->
+         <!-- <div class="showcase-slide"> 
+      			  Put the slide content in a div with the class .showcase-content.
+       				<div class="showcase-content"> <img src="style/images/art/s4.jpg" alt="4" /> </div>
+         			<div class="showcase-caption">生活是如此的美好！</div>
+      		  </div> 
+      	 -->
     </div>
     <!-- End Showcase -->
     
@@ -120,9 +111,7 @@ $(document).ready(function()
     <!-- Begin Top Columns -->
     <h2>爱好</h2>
     <div class="two-third">
-      <p>
-      	当人的兴趣不是指向对某种对象的认识，而是指向某种活动时，人的动机便成为人的爱好了。兴趣和爱好都和人的积极情感相联系，培养良好的兴趣爱好是推动人努力学习、积极工作的有效途径。例如，一些体育迷，一谈起体育便会津津乐道，一遇到体育比赛便想一睹为快，对电视中的体育节目特别迷恋，这就是对体育有兴趣。一些老京剧票友们，总喜欢谈京剧、看京剧，一遇京剧就来劲，这就是对京剧有兴趣。所谓“打锣卖糖，各爱各行”，就是说人们的爱好是多种多样、各有特色的。在实践活动中，爱好能使人们工作目标明确，积极主动，从而能自觉克服各种艰难困苦，获取工作的最大成就，并能在活动过程中不断体验成功的愉悦
-	  </p>
+      <p>${uhobby }</p>
     </div>
     <div class="one-third last">
       <ul>

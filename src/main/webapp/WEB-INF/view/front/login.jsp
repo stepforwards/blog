@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <div class="LoginWindow">
 	<div>
-	<form action="<c:url value="/admin/user/login.action"/>" method="post">
+	<form action="<c:url value="/front/user/login.action"/>" method="post">
 		<div class="login">
 			<p><input name="uemail" id="id" placeholder="邮箱" type="text"></p>
 			<p><input name="upassword" id="password" placeholder="密码" value="" type="password"></p>
@@ -143,7 +143,7 @@ $(function(){
 			var email = $('#email').val();
 			//改为ajax提交邮箱
 			if(email!=null&&email!=''){
-				$.post('admin/user/sendEmail.action',{u_email:email},function(data){
+				$.post('front/user/sendEmail.action',{uemail:email},function(data){
 					console.log(data);
 					if(data.success){
 						alert(data.message);

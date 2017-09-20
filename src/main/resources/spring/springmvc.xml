@@ -25,4 +25,10 @@
 	<property name="maxUploadSize" value="6291456"></property>
 </bean>
 
+<mvc:interceptors>
+	<mvc:interceptor>
+		<mvc:mapping path="/admin/**"/>
+		<bean class="com.forward.blog.web.interceptor.PrivilegeInterceptor"></bean>
+	</mvc:interceptor>
+</mvc:interceptors>
 </beans>

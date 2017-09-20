@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <!--  -->
 <div id="copyright" class="opacity">
-   <p><a href="<c:url value="/admin/user/login.action"/>">© 2017 Forward</a></p>
+   <p><a href="<c:url value="/front/user/login.action"/>">© 2017 Forward</a></p>
 </div>
 
 </body>

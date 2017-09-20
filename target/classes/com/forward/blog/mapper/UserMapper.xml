@@ -10,7 +10,7 @@
 		select uemail from t_user where uemail = #{uemail}
 	</select>
 	
-	<select id="updataCaptcha" parameterType="User">
+	<select id="updateCaptcha" parameterType="User">
 		update t_user set ucaptcha = #{ucaptcha} where uemail = #{uemail}
 	</select>
 	
@@ -30,4 +30,15 @@
 		select * from t_user where uemail = #{uemail}
 	</select>
 	
+	<select id="checkPassword" parameterType="User" resultType="User">
+		select * from t_user where upassword = #{upassword} and uemail = #{uemail}
+	</select>
+	
+	<update id="updatePassword" parameterType="User">
+		update t_user set upassword = #{upassword} where uemail = #{uemail}
+	</update>
+	
+	<select id="selectUserInfo" resultType="User">
+		select * from t_user
+	</select>
 </mapper>

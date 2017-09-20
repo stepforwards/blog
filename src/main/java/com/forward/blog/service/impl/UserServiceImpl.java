@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 		if( userMapper.checkEmail(user) != null){
 			String captcha = MyCaptcha.createCaptcha();
 			user.setUcaptcha(captcha);
-			userMapper.updataCaptcha(user);
-			String resetPassword = "<a href='http://localhost:8080/blog/admin/user/resetPassword.action?u_email="+user.getUemail()+"&u_captcha="+user.getUcaptcha()+"'>http://localhost:8080/blog/admin/user/resetPassword.action</a>";
+			userMapper.updateCaptcha(user);
+			String resetPassword = "<a href='http://localhost:8080/blog/front/user/resetPassword.action?uemail="+user.getUemail()+"&ucaptcha="+user.getUcaptcha()+"'>http://localhost:8080/blog/admin/user/resetPassword.action</a>";
 			try {
 				MailUtil.send(user.getUemail(), "Blog密码找回", "重置密码："+resetPassword);
 			} catch (Exception e) {
@@ -51,6 +51,21 @@ public class UserServiceImpl implements UserService {
 	public User updateUserInfo(User user) {
 		userMapper.updateUserInfo(user);
 		return userMapper.selectUser(user);
+	}
+
+	@Override
+	public User updatePassword(User user) {
+		User u = userMapper.checkPassword(user);
+		if(u != null){
+			user.setMD5U_password(user.getNewUpassword());
+			userMapper.updatePassword(user);
+		}
+		return u;
+	}
+
+	@Override
+	public User selectUserInfo() {
+		return userMapper.selectUserInfo();
 	}
 
 }

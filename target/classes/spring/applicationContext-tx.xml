@@ -15,7 +15,7 @@
 
 <tx:advice transaction-manager="transactionManager" id="txAdvice">
 	<tx:attributes>
-		<tx:method name="selectAllRole" isolation="REPEATABLE_READ" read-only="false" propagation="REQUIRED"/>
+		<tx:method name="*" isolation="REPEATABLE_READ" read-only="false" propagation="REQUIRED"/>
 	</tx:attributes>
 </tx:advice>
 
