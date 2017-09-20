@@ -21,7 +21,7 @@ public class AdminUserController {
 	@RequestMapping(value="/exit.action")
 	public String toLogout(HttpSession session){
 		session.invalidate();
-		return "/admin/login";
+		return "/front/login";
 	}
 	
 	@RequestMapping("/about.action")
