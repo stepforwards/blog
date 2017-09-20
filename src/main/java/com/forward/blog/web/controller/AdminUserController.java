@@ -69,4 +69,15 @@ public class AdminUserController {
 		return "/admin/resetPassword";
 	}
 	
+	@RequestMapping("/about.action")
+	public String inAbout(){
+		return "/admin/about";
+	}
+	
+	@RequestMapping("/updateUserInfo.action")
+	public String updateUserInfo(User user,HttpSession session){
+		session.setAttribute("user", userService.updateUserInfo(user));
+		return "redirect:/admin/user/about.action";
+	}
+	
 }

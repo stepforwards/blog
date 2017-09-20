@@ -87,7 +87,7 @@ public class PostServiceImpl implements PostService {
 		kvo.setPageSize(10);
 		kvo.setCurrentStrip((currentPage-1)*10);
 		page.setTotal(postList.size());
-		page.setRows(postList.subList(kvo.getCurrentStrip(), kvo.getPageSize() > postList.size() ? postList.size() : kvo.getPageSize() ));
+		page.setRows(postList.subList(kvo.getCurrentStrip(), kvo.getPageSize() > postList.size() ? postList.size() : kvo.getPageSize()));
 		page.setSize(10);
 		page.setPage(currentPage);
 		return page;

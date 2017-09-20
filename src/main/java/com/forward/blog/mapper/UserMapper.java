@@ -16,4 +16,8 @@ public interface UserMapper {
 
 	void resetPassword(User user);
 
+	void updateUserInfo(User user);
+
+	User selectUser(User user);
+
 }

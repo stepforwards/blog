@@ -22,5 +22,12 @@
 		update t_user set upassword = #{upassword},ucaptcha = null where uemail = #{uemail}
 	</select>
 	
+	<update id="updateUserInfo" parameterType="User">
+		update t_user set uabout = #{uabout},uhobby = #{uhobby},uaddr = #{uaddr},ufax = #{ufax},utel = #{utel},ulocation = #{ulocation} where uemail = #{uemail}
+	</update>
+	
+	<select id="selectUser" parameterType="User" resultType="User">
+		select * from t_user where uemail = #{uemail}
+	</select>
 	
 </mapper>

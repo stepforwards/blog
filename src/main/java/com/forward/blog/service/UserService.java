@@ -9,4 +9,7 @@ public interface UserService {
 	boolean sendEmail(User user);
 
 	boolean resetPassword(User user);
+
+	User updateUserInfo(User user);
+
 }

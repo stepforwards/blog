@@ -69,6 +69,7 @@
 		LEFT JOIN t_comment co2 ON co1.coreplyid = co2.coid
 		WHERE
 		co1.copostid IS NULL
+		ORDER BY co1.coid Desc
 		limit #{currentStrip},#{pageSize}
 	</select>
 	
