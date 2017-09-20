@@ -37,7 +37,6 @@ public class FrontUserController {
 		return "/front/login";
 	}
 	
-	
 	@RequestMapping(value="/sendEmail.action")
 	@ResponseBody
 	public Data sendEmail(User user){

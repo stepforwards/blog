@@ -48,7 +48,7 @@ jQuery(document).ready(function($){
   <div id="container" class="opacity">
     <div class="content">
       <h2>关于我</h2>
-      <p>Cras vehicula, enim ac rutrum imperdiet, tellus nibh sodales magna, at mollis odio mi a urna. Aliquam augue augue, sodales eu condimentum a, scelerisque eget purus. Sed suscipit mattis.</p>
+      <p>${user.uabout }</p>
       <br />
       <br />
       <br />
@@ -58,17 +58,15 @@ jQuery(document).ready(function($){
     <div class="sidebar">
       <div class="sidebar-box">
         <h4>地址</h4>
-        <p>Lorem Ipsum Dolor Sit
-          Moon Avenue No:11/21
-          Planet City, Earth<br>
+        <p>${user.uaddr }<br>
           <br>
-          <span class="lite1">Fax:</span> +555 797 534 01<br>
-          <span class="lite1">Tel:</span> +555 636 646 62<br>
-          <span class="lite1">E-mail:</span> name@domain.com</p>
+          <span class="lite1">传真：</span>${user.ufax }<br>
+          <span class="lite1">手机：</span>${user.utel }<br>
+          <span class="lite1">邮箱：</span>${user.uemail }</p>
       </div>
       <div class="sidebar-box">
         <h4>我的位置</h4>
-        <iframe width="265" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://f.amap.com/3acra_07E2AXA"></iframe>
+        <iframe width="265" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${user.ulocation }"></iframe>
       </div>
     </div>
     
