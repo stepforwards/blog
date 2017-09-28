@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ import com.forward.blog.service.PostService;
 @Controller
 @RequestMapping("/admin/album")
 public class AdminAlbumController {
+	
+	@Value("${ablumPathName}")
+	private String ablumPathName;
 	
 	@Autowired
 	AlbumService albumService;
@@ -46,9 +50,9 @@ public class AdminAlbumController {
 		String extension = FilenameUtils.getExtension(photo.getOriginalFilename());
 		if(extension.equals("")) return "redirect:/admin/album/album.action";
 		String fileName = uuid + "." + extension;
-		String pathname = "D:\\blogpic\\album";
-		photo.transferTo(new File(pathname+"\\"+fileName));
-		album.setAlurl("blogpic\\album\\"+fileName);
+		String pathname = ablumPathName;
+		photo.transferTo(new File(pathname+fileName));
+		album.setAlurl("blogpic/album/"+fileName);
 		album.setAlinserttime(new Date(System.currentTimeMillis()));
 		albumService.insertAlbum(album);
 		return "redirect:/admin/album/album.action";

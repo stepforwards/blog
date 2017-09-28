@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.AlbumMapper">
+	
+	<insert id="insertAlbum" parameterType="Album">
+		insert into t_album(alname,alurl,aldesc,alinserttime) values(#{alname},#{alurl},#{aldesc},#{alinserttime})
+	</insert>
+	
+	<select id="selectAlbumListPaging" parameterType="KVO" resultType="Album">
+		select * from t_album where alname like '%' #{alname} '%' limit #{currentStrip},#{pageSize}
+	</select>
+	
+	<delete id="deleteAlbumById" parameterType="Album">
+		delete from t_album where aid = #{aid}
+	</delete>
+	
+	<select id="selectCountAllAlbum" parameterType="KVO" resultType="Integer">
+		select count(*) from t_album where alname like '%' #{alname} '%'
+	</select>
+	
+	<select id="selectAlbumPartList" resultType="Album">
+		select * from t_album ORDER BY aid DESC limit 0,9;
+	</select>
+	
+	<select id="selectAlbumById" parameterType="Integer" resultType="Album">
+		select * from t_album where aid = #{palbumid}
+	</select>
+	
+	<!-- 
+		Video
+	 -->
+	
+	<select id="selectCountAllVideo" resultType="Integer">
+		select count(*) from t_video
+	</select>
+	
+	<select id="selectVideoListPaging" parameterType="KVO" resultType="Video">
+		select * from t_video limit #{currentStrip},#{pageSize} 
+	</select>
+	
+	<select id="insertVideo" parameterType="Video">
+		insert into t_video(vname,vurl,vinserttime) values(#{vname},#{vurl},#{vinserttime})
+	</select>
+	
+	<select id="selectAllVideoList" resultType="Video">
+		select * from t_video
+	</select>
+	
+	<update id="updateSetVideoValbumidByVideoId">
+		update t_video set valbumid = #{valbumid},valbumurl = #{valbumurl} where vid = #{vid}
+	</update>
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.PostMapper">
+	
+	<resultMap type="Post" id="PostMap">
+		<id column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="ptitle" property="ptitle" jdbcType="VARCHAR"/>
+		<result column="pcontent" property="pcontent" jdbcType="VARCHAR"/>
+		<result column="pcommentid" property="pcommentid" jdbcType="INTEGER"/>
+		<result column="pcategoriesid" property="pcategoriesid" jdbcType="INTEGER"/>
+		<result column="pfine" property="pfine" jdbcType="VARCHAR"/>
+		<result column="pinserttime" property="pinserttime" jdbcType="TIMESTAMP"/>
+		<result column="pupdatatime" property="pupdatatime" jdbcType="TIMESTAMP"/>
+		<result column="categoriesname" property="categoriesname" jdbcType="VARCHAR"/>
+		<collection property="tagList" ofType="Tag" >
+			<id column="tid" property="tid" jdbcType="INTEGER"/>
+			<result column="tagname" property="tname" jdbcType="VARCHAR"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectPostList" parameterType="KVO" resultMap="PostMap">
+		SELECT t_post.*,tid,t_tag.tname tagname,t_categories.cname categoriesname
+		FROM
+		t_post
+		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
+		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
+		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
+		WHERE ptitle LIKE '%' #{ptitle} '%' AND drafts = #{drafts}
+		<if test="pcategoriesid != null and pcategoriesid != '' ">
+		 	AND pcategoriesid = #{pcategoriesid}
+		</if>
+		<if test="tid != null and tid != '' ">
+			AND tid = #{tid}
+		</if>
+		ORDER BY t_post.pid DESC
+	</select>
+	
+	<select id="insertPost" parameterType="Post">
+		insert into t_post(ptitle,pcontent,pcategoriesid,drafts,pinserttime) values(#{ptitle},#{pcontent},#{pcategoriesid},#{drafts},#{pinserttime})
+	</select>
+	
+	<select id="selectNewPostId" resultType="Integer">
+		SELECT MAX(pid) FROM t_post
+	</select>
+	
+	<delete id="deletePostById" parameterType="Post">
+		DELETE FROM t_post WHERE t_post.pid = #{pid}
+	</delete>
+	
+	<select id="selectPostById" parameterType="Post" resultMap="PostMap">
+		SELECT t_post.*,tid,t_tag.tname tagname,t_categories.cname categoriesname
+		FROM
+		t_post
+		LEFT JOIN t_tpcontact ON t_tpcontact.tppostid = t_post.pid
+		LEFT JOIN t_tag ON t_tag.tid = t_tpcontact.tptagid
+		LEFT JOIN t_categories ON t_categories.cid = t_post.pcategoriesid
+		WHERE t_post.pid = #{pid} AND drafts = #{drafts}
+	</select>
+	
+	<select id="updatePostById" parameterType="Post">
+		update t_post set ptitle = #{ptitle},pcontent = #{pcontent},pcategoriesid = #{pcategoriesid},
+		pupdatatime = #{pupdatatime},drafts = #{drafts} where pid = #{pid}
+	</select>
+	
+	<select id="selectlatestPost" resultType="Post">
+		select * from t_post where drafts = 0 ORDER BY pid DESC LIMIT 0,4 
+	</select>
+	
+	<select id="setFinePostById" parameterType="Post" >
+		update t_post set pfine = #{pfine} where pid = #{pid} 
+	</select>
+	
+	<select id="selectFinePostList" resultType="Post">
+		select * from t_post where pfine = 'checked' and drafts = 0
+	</select>
+	
+	<select id="selectAllPostList" resultType="Post">
+		select * from t_post
+	</select>
+	
+	<update id="setPostPalbumidByPostId" parameterType="Post">
+		update t_post set palbumid = #{palbumid},palbumurl = #{palbumurl} where pid = #{pid}
+	</update>	
+	
+</mapper>

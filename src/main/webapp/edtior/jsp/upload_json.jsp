@@ -17,7 +17,10 @@
 
 //文件保存目录路径
 /* String savePath = pageContext.getServletContext().getRealPath("/") + "attached/"; */
-String savePath = "D:\\blogpic\\";
+// String savePath = "D:\\blogpic\\";
+// properties 配置文件名称
+ResourceBundle res = ResourceBundle.getBundle("uploadAlbum");
+String savePath = res.getString("picPathName");
 
 //文件保存目录URL
 /* String saveUrl  = request.getContextPath() + "/attached/"; */

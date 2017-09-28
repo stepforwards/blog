@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.CategoriesMapper">
+	
+	<select id="selectCategoriesList" resultType="Categories">
+		select * from t_categories
+	</select>
+	
+	<insert id="insertCategories" parameterType="Categories">
+		insert into t_categories(cname,cdesc) values(#{cname},#{cdesc})
+	</insert>
+	
+	<update id="updateCategoriesById" parameterType="Categories">
+		update t_categories set cname = #{cname},cdesc = #{cdesc} where cid = #{cid}
+	</update>
+	
+	<delete id="deleteCategoriesById" parameterType="Categories">
+		delete from t_categories where cid = #{cid}
+	</delete>
+	
+</mapper>

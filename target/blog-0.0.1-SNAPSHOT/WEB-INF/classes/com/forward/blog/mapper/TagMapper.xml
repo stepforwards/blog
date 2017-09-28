@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.TagMapper">
+
+	<select id="selectTagList" resultType="Tag">
+		select * from t_tag
+	</select>
+	
+	<insert id="insertPostTag" parameterType="Tpcontact">
+		insert into t_tpcontact(tptagid,tppostid) values(#{tptagid},#{tppostid})
+	</insert>
+	
+	<delete id="deletePostTagByPostId" parameterType="Integer">
+		DELETE FROM t_tpcontact WHERE t_tpcontact.tppostid = #{postid}
+	</delete>
+	
+	<delete id="deletePostTagByPostIdAndTagid" parameterType="Tpcontact">
+		DELETE FROM t_tpcontact WHERE tptagid = #{tptagid} and tppostid = #{tppostid}
+	</delete>
+	
+	<insert id="addTag" parameterType="Tag">
+		insert into t_tag(tname,tdesc) values(#{tname},#{tdesc})
+	</insert>
+	
+	<update id="updateTagById" parameterType="Tag">
+		update t_tag set tname = #{tname},tdesc = #{tdesc} where tid = #{tid}
+	</update>
+	
+	<delete id="deleteTagById" parameterType="Tag">
+		delete from t_tag where tid = #{tid}
+	</delete>
+</mapper>

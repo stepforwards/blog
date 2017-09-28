@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="com.forward.blog.mapper.UserMapper">
+	
+	<select id="userLogin" parameterType="User" resultType="User">
+		select * from t_user where uemail = #{uemail} and upassword = #{upassword}
+	</select>
+	
+	<select id="checkEmail" parameterType="User" resultType="User">
+		select uemail from t_user where uemail = #{uemail}
+	</select>
+	
+	<select id="updateCaptcha" parameterType="User">
+		update t_user set ucaptcha = #{ucaptcha} where uemail = #{uemail}
+	</select>
+	
+	<select id="checkEmailAndCaptcha" parameterType="User" resultType="User">
+		select uid from t_user where uemail = #{uemail} and ucaptcha = #{ucaptcha}
+	</select>
+	
+	<select id="resetPassword" parameterType="User">
+		update t_user set upassword = #{upassword},ucaptcha = null where uemail = #{uemail}
+	</select>
+	
+	<update id="updateUserInfo" parameterType="User">
+		update t_user set uabout = #{uabout},uhobby = #{uhobby},uaddr = #{uaddr},ufax = #{ufax},utel = #{utel},ulocation = #{ulocation} where uemail = #{uemail}
+	</update>
+	
+	<select id="selectUser" parameterType="User" resultType="User">
+		select * from t_user where uemail = #{uemail}
+	</select>
+	
+	<select id="checkPassword" parameterType="User" resultType="User">
+		select * from t_user where upassword = #{upassword} and uemail = #{uemail}
+	</select>
+	
+	<update id="updatePassword" parameterType="User">
+		update t_user set upassword = #{upassword} where uemail = #{uemail}
+	</update>
+	
+	<select id="selectUserInfo" resultType="User">
+		select * from t_user
+	</select>
+</mapper>
